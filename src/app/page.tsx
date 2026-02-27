@@ -35,45 +35,43 @@ export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-<Section
-  size="large"
-  className="relative overflow-hidden bg-np-black flex items-center justify-center py-32 md:py-40"
-  containerClassName="w-full flex flex-col items-center justify-center"
->
-  <div className="relative z-10 flex flex-col items-center text-center w-full">
-    
-      <img
-        src="/logos/logo-wordmark.png"
-        alt="No Pressure Exterior Specialists"
-        style={{ height: "680px", width: "auto", maxWidth: "100vw", display: "block" }}
-        className="mx-auto object-contain mb-12 md:mb-16 select-none"
-        draggable="false"
-        loading="eager"
-      />
+      <Section
+        size="large"
+        className="relative overflow-hidden bg-np-black pt-8 md:pt-12 pb-24 md:pb-28 min-h-[70vh]"
+        containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div className="relative z-10 flex flex-col items-center text-center w-full">
+          <img
+            src="/logos/logo-wordmark.png"
+            alt="No Pressure Exterior Specialists"
+            style={{ height: "340px", width: "auto", maxWidth: "95vw", display: "block" }}
+            className="mx-auto object-contain mb-8 md:mb-10 select-none"
+            draggable="false"
+            loading="eager"
+          />
 
-    <div className="text-sm md:text-base text-np-muted font-medium mb-2">
-      Gold Coast &amp; surrounding suburbs
-    </div>
+          <div className="text-sm md:text-base text-np-muted font-medium mb-2">
+            Gold Coast &amp; surrounding suburbs
+          </div>
 
-    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4">
-       Premium Driveway &amp; Exterior Cleaning
-    </h1>
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4">
+            Premium Driveway &amp; Exterior Cleaning
+          </h1>
 
-    <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-6">
-      Driveways • Footpaths • Exterior Walls • Soft Washing • Concrete Surfaces
-    </p>
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-6">
+            Driveways • Footpaths • Exterior Walls • Soft Washing • Concrete Surfaces
+          </p>
 
-    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="/contact" variant="gold" size="lg">
-        Get a Free Quote
-      </Button>
-      <Button href="tel:0411076785" variant="outline" size="lg">
-        Call 0411 076 785
-      </Button>
-    </div>
-
-  </div>
-</Section>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button href="/contact" variant="gold" size="lg">
+              Get a Free Quote
+            </Button>
+            <Button href="tel:0411076785" variant="outline" size="lg">
+              Call 0411 076 785
+            </Button>
+          </div>
+        </div>
+      </Section>
 
       {/* WHY CHOOSE US SECTION */}
       <Section size="medium" className="bg-np-black border-t border-b border-white/10">
