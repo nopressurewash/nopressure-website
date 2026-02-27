@@ -42,14 +42,14 @@ export default function HomePage() {
 >
   <div className="relative z-10 flex flex-col items-center text-center w-full">
     
-    <img
-      src="/logos/logo-wordmark.png"
-      alt="No Pressure Exterior Specialists"
-      style={{ height: '680px', width: 'auto', maxWidth: '95vw', display: 'block' }}
-      className="mx-auto object-contain mb-10 md:mb-12 select-none"
-      draggable="false"
-      loading="eager"
-    />
+      <img
+        src="/logos/logo-wordmark.png"
+        alt="No Pressure Exterior Specialists"
+        style={{ height: "680px", width: "auto", maxWidth: "100vw", display: "block" }}
+        className="mx-auto object-contain mb-12 md:mb-16 select-none"
+        draggable="false"
+        loading="eager"
+      />
 
     <div className="text-sm md:text-base text-np-muted font-medium mb-2">
       Gold Coast &amp; surrounding suburbs
