@@ -1,19 +1,26 @@
 import Link from "next/link";
 import Container from "./Container";
+import Image from "next/image";
 
 export default function SiteFooter() {
   return (
     <footer className="border-t border-white/10">
       <Container>
         <div className="py-10 grid gap-8 md:grid-cols-3">
-          <div>
-            <div className="font-extrabold tracking-tight text-lg">
-              <span className="text-np-gold">NO</span> <span>PRESSURE</span>
-            </div>
-            <div className="text-xs text-white/60 tracking-[0.25em] mt-1">
+          <div className="flex flex-col items-start">
+            <Image
+              src="/logos/logo-wordmark.png"
+              alt="No Pressure – Exterior Specialists"
+              width={220}
+              height={44}
+              className="w-full max-w-[280px] md:max-w-[220px] h-auto object-contain drop-shadow-[0_2px_12px_rgba(255,215,0,0.12)]"
+              style={{ marginBottom: '0.5rem' }}
+              priority
+            />
+            <div className="text-xs text-white/60 tracking-[0.25em] mb-2">
               EXTERIOR SPECIALISTS
             </div>
-            <p className="text-sm text-white/70 mt-4 max-w-sm">
+            <p className="text-sm text-white/70 mt-2 max-w-sm">
               Premium driveway, footpath and exterior cleaning. Gold Coast, Australia.
             </p>
           </div>
