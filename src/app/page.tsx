@@ -39,20 +39,19 @@ export default function HomePage() {
         {/* Removed gradient background for true np-black */}
         {/* Clean stacked hero content */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
-          <Image
-            src="/logos/logo-wordmark.png"
+          <img
+            src="/logos/Wordmark_Metalic_Logo.svg"
             alt="No Pressure Exterior Specialists"
-            width={900}
-            height={160}
-            priority
-            className="w-full max-w-[540px] sm:max-w-[600px] md:max-w-[820px] lg:max-w-[900px] xl:max-w-[900px] h-auto object-contain mb-6 md:mb-8"
-            style={{ width: '100%', height: 'auto' }}
+            style={{ height: '180px', width: 'auto', maxWidth: '95vw', display: 'block' }}
+            className="mx-auto object-contain mb-4 md:mb-6 select-none"
+            draggable="false"
+            loading="eager"
           />
-          <div className="text-sm md:text-base text-np-muted font-medium mb-2 mt-0">Gold Coast &amp; surrounding suburbs</div>
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4 md:mb-5">
+          <div className="text-sm md:text-base text-np-muted font-medium mb-1 mt-0">Gold Coast &amp; surrounding suburbs</div>
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-3 md:mb-4">
             Premium Driveway &amp; Exterior Cleaning
           </h1>
-          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-5 md:mb-7">
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-4 md:mb-5">
             Driveways, footpaths, and exterior soft washing — finished clean, even, and professional.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-2">
