@@ -56,7 +56,7 @@ export default function HomePage() {
     </div>
 
     <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4">
-       Driveway &amp; Exterior Cleaning
+       Premium Driveway &amp; Exterior Cleaning
     </h1>
 
     <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-6">
