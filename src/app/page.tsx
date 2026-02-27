@@ -35,7 +35,7 @@ export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-      <Section size="large" className="relative overflow-hidden bg-np-black flex items-center min-h-[60vh] md:min-h-[70vh]" containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+      <Section size="large" className="relative overflow-hidden bg-np-black flex items-center min-h-[50vh] md:min-h-[55vh] pt-10 md:pt-16" containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
         {/* Removed gradient background for true np-black */}
         {/* Clean stacked hero content */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
@@ -45,14 +45,14 @@ export default function HomePage() {
             width={900}
             height={160}
             priority
-            className="w-full max-w-[540px] sm:max-w-[600px] md:max-w-[820px] lg:max-w-[900px] xl:max-w-[900px] h-auto object-contain mb-10"
+            className="w-full max-w-[540px] sm:max-w-[600px] md:max-w-[820px] lg:max-w-[900px] xl:max-w-[900px] h-auto object-contain mb-6 md:mb-8"
             style={{ width: '100%', height: 'auto' }}
           />
-          <div className="text-sm md:text-base text-np-muted font-medium mb-3 mt-1">Gold Coast &amp; surrounding suburbs</div>
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-5">
+          <div className="text-sm md:text-base text-np-muted font-medium mb-2 mt-0">Gold Coast &amp; surrounding suburbs</div>
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4 md:mb-5">
             Premium Driveway &amp; Exterior Cleaning
           </h1>
-          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-7">
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-5 md:mb-7">
             Driveways, footpaths, and exterior soft washing — finished clean, even, and professional.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-2">
