@@ -47,14 +47,14 @@ export default function HomePage() {
               src="/logos/logo-wordmark.png"
               alt="No Pressure wordmark logo"
               priority
-              className="mx-auto mb-6 mt-2"
+              className="mx-auto mb-6"
               style={{
-                maxWidth: '220px',
+                maxWidth: '300px',
                 width: '100%',
                 height: 'auto',
                 aspectRatio: '420/80',
               }}
-              sizes="(max-width: 768px) 220px, (min-width: 1200px) 420px, 340px"
+              sizes="(max-width: 768px) 300px, (min-width: 1200px) 450px, 380px"
             />
           </div>
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-6 text-center">
