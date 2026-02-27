@@ -9,12 +9,12 @@ export default function SiteFooter() {
         <div className="py-10 grid gap-8 md:grid-cols-3">
           <div className="flex flex-col items-start">
             <Image
-              src="/logos/logo-wordmark.png"
+              src="/logos/logo-icon.png"
               alt="No Pressure Exterior Specialists"
-              width={220}
-              height={44}
-              className="w-full max-w-[280px] md:max-w-[220px] h-auto object-contain drop-shadow-[0_2px_12px_rgba(255,215,0,0.12)]"
-              style={{ marginBottom: '0.5rem' }}
+              width={100}
+              height={100}
+              style={{ width: 100, height: 100, marginBottom: '0.5rem' }}
+              className="object-contain drop-shadow-[0_2px_12px_rgba(255,215,0,0.12)]"
               priority
             />
             <div className="text-xs text-white/60 tracking-[0.25em] mb-2">
