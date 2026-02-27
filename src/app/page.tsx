@@ -48,11 +48,12 @@ export default function HomePage() {
             priority
             className="w-full max-w-[520px] md:max-w-[560px] sm:max-w-[400px] h-auto object-contain mb-6"
           />
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-6">
-            <span className="text-np-gold">Exterior Specialists</span> for the Gold Coast
+          <div className="text-sm md:text-base text-np-muted font-medium mb-3 mt-1">Gold Coast &amp; surrounding suburbs</div>
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-5">
+            Premium Driveway &amp; Exterior Cleaning
           </h1>
-          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8">
-            Premium driveway, footpath and exterior cleaning. High-end results, every time.
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-7">
+            Driveways, footpaths, and exterior soft washing — finished clean, even, and professional.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-2">
             <Button href="/contact" variant="gold" size="lg">Get a Free Quote</Button>
