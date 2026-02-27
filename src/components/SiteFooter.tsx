@@ -11,7 +11,7 @@ export default function SiteFooter() {
             <img
               src="/logos/NP_Metalic_Logo.svg"
               alt="No Pressure Exterior Specialists"
-              style={{ height: '120px', width: 'auto', display: 'block', maxHeight: '120px' }}
+              style={{ height: '90px', width: 'auto', display: 'block', maxHeight: '90px' }}
               className="object-contain bg-transparent rounded-none select-none"
               draggable="false"
               loading="eager"
