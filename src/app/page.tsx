@@ -36,31 +36,22 @@ export default function HomePage() {
     <>
       {/* HERO SECTION */}
       <Section size="large" className="relative overflow-hidden bg-np-black flex items-center min-h-[60vh] md:min-h-[70vh]" containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-        {/* Glowing metallic background effect (not for logo) */}
+        {/* Glow background layer */}
         <div className="absolute inset-0 pointer-events-none select-none z-0">
           <span className="block w-full h-full bg-gradient-to-br from-np-gold/60 via-np-purple/40 to-np-gold/30 rounded-full blur-2xl opacity-60 animate-pulse" />
         </div>
-        {/* LogoRow: wordmark above headline, always visible */}
-        <div className="relative z-10 w-full flex flex-col items-center justify-center">
-          <div className="w-full flex justify-center">
-            <Image
-              src="/logos/logo-wordmark.png"
-              alt="No Pressure wordmark logo"
-              priority
-              className="mx-auto mb-6"
-              style={{
-                maxWidth: '300px',
-                width: '100%',
-                height: 'auto',
-                aspectRatio: '420/80',
-              }}
-              sizes="(max-width: 768px) 300px, (min-width: 1200px) 450px, 380px"
-            />
-          </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-6 text-center">
+        {/* Clean stacked hero content */}
+        <div className="relative z-10 flex flex-col items-center text-center w-full">
+          <Image
+            src="/logos/logo-wordmark.png"
+            alt="No Pressure wordmark logo"
+            priority
+            className="w-full max-w-[520px] md:max-w-[560px] sm:max-w-[400px] h-auto object-contain mb-6"
+          />
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-6">
             <span className="text-np-gold">Exterior Specialists</span> for the Gold Coast
           </h1>
-          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8 text-center">
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8">
             Premium driveway, footpath and exterior cleaning. High-end results, every time.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-2">
