@@ -24,15 +24,15 @@ export default function Button({
   const base =
     "inline-flex items-center justify-center font-semibold rounded-full transition focus:outline-none focus:ring-2 focus:ring-np-gold";
   const sizes = {
-    md: "px-6 py-2 text-base",
-    lg: "px-8 py-3 text-lg",
+    md: "px-5 py-1.5 text-base",
+    lg: "px-7 py-2.5 text-lg",
   };
   const variants = {
     gold:
-      "bg-np-gold text-black shadow-soft hover:brightness-110 hover:shadow-lg",
+      "bg-np-gold text-black shadow-soft hover:brightness-105 hover:shadow-lg transition-all duration-150",
     outline:
-      "border border-np-gold text-np-gold bg-transparent hover:bg-np-gold/10",
-    flat: "bg-transparent text-np-gold hover:text-white",
+      "border border-np-gold text-np-gold bg-transparent hover:bg-np-gold/10 transition-all duration-150",
+    flat: "bg-transparent text-np-gold hover:text-white transition-all duration-150",
   };
   if (href) {
     return (

@@ -30,11 +30,12 @@ const SERVICES = [
 ];
 
 
+
 export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-      <Section className="relative overflow-hidden bg-np-black pt-10 pb-20 md:pt-20 md:pb-32">
+      <Section size="large" className="relative overflow-hidden bg-np-black flex items-center min-h-[60vh] md:min-h-[70vh]" containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
         {/* Glowing metallic hero logo effect */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
           <div className="relative flex flex-col items-center">
@@ -43,16 +44,16 @@ export default function HomePage() {
                 <Image
                   src="/logos/logo-wordmark.png"
                   alt="No Pressure Wordmark"
-                  width={340}
-                  height={80}
+                  width={260}
+                  height={60}
                   className="hidden md:block"
                   priority
                 />
                 <Image
                   src="/logos/logo-icon.png"
                   alt="No Pressure Icon"
-                  width={80}
-                  height={80}
+                  width={64}
+                  height={64}
                   className="block md:hidden"
                   priority
                 />
@@ -64,14 +65,14 @@ export default function HomePage() {
             </span>
           </div>
         </div>
-        <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center text-center gap-7 mt-32 md:mt-40">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05] text-white">
+        <div className="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-6 mt-24 md:mt-32">
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4">
             <span className="text-np-gold">Exterior Specialists</span> for the Gold Coast
           </h1>
-          <p className="text-lg md:text-2xl text-white/80 font-medium max-w-xl mx-auto">
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-6">
             Premium driveway, footpath and exterior cleaning. High-end results, every time.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-2">
             <Button href="/contact" variant="gold" size="lg">Get a Free Quote</Button>
             <Button href="tel:0411076785" variant="outline" size="lg">Call 0411 076 785</Button>
           </div>
@@ -79,30 +80,35 @@ export default function HomePage() {
       </Section>
 
       {/* WHY CHOOSE US SECTION */}
-      <Section className="bg-np-black border-t border-b border-white/10">
-        <div className="max-w-5xl mx-auto grid gap-8 md:grid-cols-5">
-          {WHY_CARDS.map((card) => (
-            <Card key={card.title} goldBorder className="p-6 text-center flex flex-col items-center bg-gradient-to-b from-white/5 to-np-black/80">
-              <div className="text-np-gold font-bold text-lg mb-2">{card.title}</div>
-              <div className="text-white/80 text-sm font-medium">{card.desc}</div>
-            </Card>
-          ))}
+      <Section size="medium" className="bg-np-black border-t border-b border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide text-center mb-10">Why Choose Us</h2>
+          <div className="grid gap-8 md:grid-cols-5">
+            {WHY_CARDS.map((card) => (
+              <Card key={card.title} goldBorder className="p-8 min-h-[170px] flex flex-col items-center justify-center text-center bg-gradient-to-b from-white/5 to-np-black/80">
+                <div className="text-np-gold font-bold text-lg mb-2 tracking-wide">{card.title}</div>
+                <div className="text-white/80 text-sm font-medium">{card.desc}</div>
+              </Card>
+            ))}
+          </div>
         </div>
       </Section>
 
       {/* SERVICES PREVIEW SECTION */}
-      <Section className="bg-np-black">
+      <Section size="medium" className="bg-np-black">
         <div className="max-w-6xl mx-auto">
           <SectionHeading
             eyebrow="OUR SERVICES"
             title="Premium exterior cleaning"
             subtitle="Focused services that deliver a clean, high-end finish for your property."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
             {SERVICES.map((service) => (
-              <Card key={service.title} goldBorder className="p-7 hover:shadow-lg hover:shadow-np-gold/20 transition-shadow">
-                <div className="text-np-gold font-semibold text-lg mb-2">{service.title}</div>
-                <div className="text-white/80 text-base">{service.desc}</div>
+              <Card key={service.title} goldBorder className="p-8 min-h-[200px] flex flex-col justify-between hover:shadow-lg hover:shadow-np-gold/20 transition-shadow">
+                <div>
+                  <div className="text-np-gold font-semibold text-lg mb-2 tracking-wide">{service.title}</div>
+                  <div className="text-white/80 text-base">{service.desc}</div>
+                </div>
                 <Button href="/contact" variant="flat" size="md" className="mt-6">Get a Free Quote</Button>
               </Card>
             ))}
@@ -111,13 +117,13 @@ export default function HomePage() {
       </Section>
 
       {/* TRUST / PREMIUM STATEMENT SECTION */}
-      <Section className="bg-np-black">
+      <Section size="small" className="bg-np-black">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-8">
             <span className="inline-block w-24 h-1 rounded-full bg-gradient-to-r from-np-gold via-np-purple to-np-gold" />
           </div>
-          <h3 className="text-2xl md:text-3xl font-extrabold text-np-gold mb-2">Craftsmanship, always.</h3>
-          <p className="text-white/80 text-lg font-medium">
+          <h2 className="text-xl md:text-2xl font-bold text-np-gold mb-3 tracking-wide">Craftsmanship, always.</h2>
+          <p className="text-np-muted text-base md:text-lg font-medium">
             Every job is completed with care, precision, and a premium finish. That’s the No Pressure standard.
           </p>
         </div>

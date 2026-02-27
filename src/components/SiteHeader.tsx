@@ -13,24 +13,24 @@ const NAV_LINKS = [
 export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-np-black/90 backdrop-blur">
-      <div className="mx-auto max-w-6xl px-5 py-3 flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-6xl px-6 lg:px-10 py-4 flex items-center justify-between gap-6 min-h-[72px]">
         {/* Logo: wordmark on desktop, icon on mobile */}
         <Link href="/" className="flex items-center" aria-label="No Pressure Home">
           <span className="block md:hidden">
-            <Image src="/logos/logo-icon.png" alt="No Pressure Logo" width={40} height={40} priority />
+            <Image src="/logos/logo-icon.png" alt="No Pressure Logo" width={32} height={32} priority />
           </span>
           <span className="hidden md:block">
-            <Image src="/logos/logo-wordmark.png" alt="No Pressure Wordmark" width={170} height={40} priority />
+            <Image src="/logos/logo-wordmark.png" alt="No Pressure Wordmark" width={140} height={32} priority />
           </span>
         </Link>
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10 ml-8">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-white/80 hover:text-np-gold transition-colors text-base font-medium px-2 py-1 rounded"
+              className="text-white/80 hover:text-np-gold transition-colors text-base font-medium px-3 py-1 rounded tracking-wide"
             >
               {link.label}
             </Link>
