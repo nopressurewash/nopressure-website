@@ -1,6 +1,5 @@
 
 import Link from "next/link";
-import Image from "next/image";
 import Button from "./Button";
 import clsx from "clsx";
 
@@ -17,13 +16,13 @@ export default function SiteHeader() {
         {/* Logo: wordmark on desktop, icon on mobile */}
         <Link href="/" className="flex items-center" aria-label="No Pressure Home">
           <span className="block">
-            <Image
-              src="/logos/logo-icon.png"
+            <img
+              src="/logos/NP_Metalic_Logo.svg"
               alt="No Pressure Exterior Specialists"
-              width={50}
-              height={50}
-              className="object-contain h-12 w-auto bg-transparent rounded-none"
-              priority
+              style={{ height: '68px', width: 'auto', display: 'block' }}
+              className="object-contain bg-transparent rounded-none select-none"
+              draggable="false"
+              loading="eager"
             />
           </span>
         </Link>

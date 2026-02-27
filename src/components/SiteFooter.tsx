@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Container from "./Container";
-import Image from "next/image";
+
 
 export default function SiteFooter() {
   return (
@@ -8,13 +8,13 @@ export default function SiteFooter() {
       <Container>
         <div className="py-10 grid gap-8 md:grid-cols-3">
           <div className="flex flex-col items-start">
-            <Image
-              src="/logos/logo-icon.png"
+            <img
+              src="/logos/NP_Metalic_Logo.svg"
               alt="No Pressure Exterior Specialists"
-              width={56}
-              height={56}
-              className="object-contain h-14 w-auto bg-transparent rounded-none"
-              priority
+              style={{ height: '60px', width: 'auto', display: 'block', maxHeight: '60px' }}
+              className="object-contain bg-transparent rounded-none select-none"
+              draggable="false"
+              loading="eager"
             />
             <div className="text-xs text-white/60 tracking-[0.25em] mb-2">
               EXTERIOR SPECIALISTS
