@@ -9,7 +9,7 @@ export default function SiteFooter() {
         <div className="py-10 grid gap-8 md:grid-cols-3">
           <div className="flex flex-col items-start">
             <Image
-              src="/logos/wordmark-metallic.png"
+              src="/logos/logo-wordmark.png"
               alt="No Pressure Exterior Specialists"
               width={220}
               height={44}

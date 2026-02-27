@@ -40,7 +40,7 @@ export default function HomePage() {
         {/* Clean stacked hero content */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <Image
-            src="/logos/wordmark-metallic.png"
+            src="/logos/logo-wordmark.png"
             alt="No Pressure Exterior Specialists"
             width={672}
             height={120}

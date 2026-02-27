@@ -18,7 +18,7 @@ export default function SiteHeader() {
         <Link href="/" className="flex items-center" aria-label="No Pressure Home">
             <span className="block md:hidden">
               <Image
-                src="/logos/logo-metallic.png"
+                src="/logos/logo-icon.png"
                 alt="No Pressure Exterior Specialists"
                 width={40}
                 height={40}
@@ -29,7 +29,7 @@ export default function SiteHeader() {
             </span>
             <span className="hidden md:block">
               <Image
-                src="/logos/wordmark-metallic.png"
+                src="/logos/logo-wordmark.png"
                 alt="No Pressure Exterior Specialists"
                 width={160}
                 height={36}
