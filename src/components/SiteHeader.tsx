@@ -19,7 +19,7 @@ export default function SiteHeader() {
             <img
               src="/logos/NP_Metalic_Logo.svg"
               alt="No Pressure Exterior Specialists"
-              style={{ height: '68px', width: 'auto', display: 'block' }}
+              style={{ height: '90px', width: 'auto', display: 'block' }}
               className="object-contain bg-transparent rounded-none select-none"
               draggable="false"
               loading="eager"
