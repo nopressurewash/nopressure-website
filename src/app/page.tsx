@@ -40,9 +40,9 @@ export default function HomePage() {
         {/* Clean stacked hero content */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <img
-            src="/logos/Wordmark_Metalic_Logo.svg"
+            src="/logos/logo-wordmark.png"
             alt="No Pressure Exterior Specialists"
-            style={{ height: '1200`px', width: 'auto', maxWidth: '95vw', display: 'block' }}
+            style={{ height: '200px', width: 'auto', maxWidth: '95vw', display: 'block' }}
             className="mx-auto object-contain mb-4 md:mb-6 select-none"
             draggable="false"
             loading="eager"
