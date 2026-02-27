@@ -42,7 +42,7 @@ export default function HomePage() {
           <img
             src="/logos/Wordmark_Metalic_Logo.svg"
             alt="No Pressure Exterior Specialists"
-            style={{ height: '800px', width: 'auto', maxWidth: '95vw', display: 'block' }}
+            style={{ height: '1200`px', width: 'auto', maxWidth: '95vw', display: 'block' }}
             className="mx-auto object-contain mb-4 md:mb-6 select-none"
             draggable="false"
             loading="eager"
