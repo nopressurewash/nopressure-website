@@ -37,15 +37,15 @@ export default function HomePage() {
       {/* HERO SECTION */}
 <Section
   size="large"
-  className="relative overflow-hidden bg-np-black flex items-center justify-center py-28 md:py-36"
-  containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center"
+  className="relative overflow-hidden bg-np-black flex items-center justify-center py-32 md:py-40"
+  containerClassName="w-full flex flex-col items-center justify-center"
 >
   <div className="relative z-10 flex flex-col items-center text-center w-full">
     
     <img
       src="/logos/logo-wordmark.png"
       alt="No Pressure Exterior Specialists"
-      style={{ height: '480px', width: 'auto', maxWidth: '95vw', display: 'block' }}
+      style={{ height: '800px', width: 'auto', maxWidth: '95vw', display: 'block' }}
       className="mx-auto object-contain mb-10 md:mb-12 select-none"
       draggable="false"
       loading="eager"
