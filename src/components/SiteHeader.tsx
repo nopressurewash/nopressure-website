@@ -20,10 +20,9 @@ export default function SiteHeader() {
             <Image
               src="/logos/logo-icon.png"
               alt="No Pressure Exterior Specialists"
-              width={55}
-              height={55}
-              style={{ width: 55, height: 55 }}
-              className="object-contain"
+              width={44}
+              height={44}
+              className="object-contain h-11 w-auto bg-transparent rounded-none"
               priority
             />
           </span>

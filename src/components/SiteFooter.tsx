@@ -11,10 +11,9 @@ export default function SiteFooter() {
             <Image
               src="/logos/logo-icon.png"
               alt="No Pressure Exterior Specialists"
-              width={100}
-              height={100}
-              style={{ width: 100, height: 100, marginBottom: '0.5rem' }}
-              className="object-contain drop-shadow-[0_2px_12px_rgba(255,215,0,0.12)]"
+              width={56}
+              height={56}
+              className="object-contain h-14 w-auto bg-transparent rounded-none"
               priority
             />
             <div className="text-xs text-white/60 tracking-[0.25em] mb-2">
