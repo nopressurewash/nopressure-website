@@ -35,15 +35,15 @@ export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-      <Section size="large" className="relative overflow-hidden bg-np-black flex items-center min-h-[50vh] md:min-h-[55vh] pt-10 md:pt-16" containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+      <Section size="large" className="relative overflow-hidden bg-np-black flex items-center min-h-[70vh] md:min-h-[55vh] pt-10 md:pt-16" containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
         {/* Removed gradient background for true np-black */}
         {/* Clean stacked hero content */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <img
             src="/logos/logo-wordmark.png"
             alt="No Pressure Exterior Specialists"
-            style={{ height: '200px', width: 'auto', maxWidth: '95vw', display: 'block' }}
-            className="mx-auto object-contain mb-4 md:mb-6 select-none"
+            style={{ height: '340px', width: 'auto', maxWidth: '95vw', display: 'block' }}
+            className="mx-auto object-contain mb-8 md:mb-10 select-none"
             draggable="false"
             loading="eager"
           />
