@@ -45,7 +45,7 @@ export default function HomePage() {
     <img
       src="/logos/logo-wordmark.png"
       alt="No Pressure Exterior Specialists"
-      style={{ height: '800px', width: 'auto', maxWidth: '95vw', display: 'block' }}
+      style={{ height: '680px', width: 'auto', maxWidth: '95vw', display: 'block' }}
       className="mx-auto object-contain mb-10 md:mb-12 select-none"
       draggable="false"
       loading="eager"
