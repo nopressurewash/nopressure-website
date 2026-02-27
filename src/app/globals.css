@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --np-black:#0A0A0A;
+  --np-gold:#D4AF37;
+  --np-purple:#6F2BFF;
+  --np-white:#FFFFFF;
+  --np-muted:#CFCFCF;
+}
+
+html, body { height: 100%; }
+
+body{
+  background: var(--np-black);
+  color: var(--np-white);
+}
+
+::selection{
+  background: rgba(111,43,255,0.35);
+}
