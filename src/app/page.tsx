@@ -36,40 +36,31 @@ export default function HomePage() {
     <>
       {/* HERO SECTION */}
       <Section size="large" className="relative overflow-hidden bg-np-black flex items-center min-h-[60vh] md:min-h-[70vh]" containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-        {/* Glowing metallic hero logo effect */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-          <div className="relative flex flex-col items-center">
-            <span className="block">
-              <span className="relative z-10">
-                <Image
-                  src="/logos/logo-wordmark.png"
-                  alt="No Pressure Wordmark"
-                  width={260}
-                  height={60}
-                  className="hidden md:block"
-                  priority
-                />
-                <Image
-                  src="/logos/logo-icon.png"
-                  alt="No Pressure Icon"
-                  width={64}
-                  height={64}
-                  className="block md:hidden"
-                  priority
-                />
-              </span>
-              {/* Glowing metallic effect (CSS only) */}
-              <span className="absolute inset-0 z-0 blur-2xl opacity-60 pointer-events-none">
-                <span className="block w-full h-full bg-gradient-to-br from-np-gold/60 via-np-purple/40 to-np-gold/30 rounded-full animate-pulse" />
-              </span>
-            </span>
-          </div>
+        {/* Glowing metallic background effect (not for logo) */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0">
+          <span className="block w-full h-full bg-gradient-to-br from-np-gold/60 via-np-purple/40 to-np-gold/30 rounded-full blur-2xl opacity-60 animate-pulse" />
         </div>
-        <div className="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-6 mt-24 md:mt-32">
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4">
+        {/* LogoRow: wordmark above headline, always visible */}
+        <div className="relative z-10 w-full flex flex-col items-center justify-center">
+          <div className="w-full flex justify-center">
+            <Image
+              src="/logos/logo-wordmark.png"
+              alt="No Pressure wordmark logo"
+              priority
+              className="mx-auto mb-6 mt-2"
+              style={{
+                maxWidth: '220px',
+                width: '100%',
+                height: 'auto',
+                aspectRatio: '420/80',
+              }}
+              sizes="(max-width: 768px) 220px, (min-width: 1200px) 420px, 340px"
+            />
+          </div>
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-6 text-center">
             <span className="text-np-gold">Exterior Specialists</span> for the Gold Coast
           </h1>
-          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-6">
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8 text-center">
             Premium driveway, footpath and exterior cleaning. High-end results, every time.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-2">
