@@ -116,9 +116,9 @@ export default function HomePage() {
           <div className="flex justify-center mb-8">
             <span className="inline-block w-24 h-1 rounded-full bg-gradient-to-r from-np-gold via-np-purple to-np-gold" />
           </div>
-          <h2 className="text-xl md:text-2xl font-bold text-np-gold mb-3 tracking-wide">Craftsmanship, always.</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-np-gold mb-3 tracking-wide">Engineered for a Premium Finish.</h2>
           <p className="text-np-muted text-base md:text-lg font-medium">
-            Every job is completed with care, precision, and a premium finish. That’s the No Pressure standard.
+            Driveways and exteriors restored with precision, pressure, and care.
           </p>
         </div>
       </Section>
