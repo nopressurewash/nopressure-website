@@ -9,8 +9,8 @@ export default function SiteFooter() {
         <div className="py-10 grid gap-8 md:grid-cols-3">
           <div className="flex flex-col items-start">
             <Image
-              src="/logos/logo-wordmark.png"
-              alt="No Pressure – Exterior Specialists"
+              src="/logos/wordmark-metallic.png"
+              alt="No Pressure Exterior Specialists"
               width={220}
               height={44}
               className="w-full max-w-[280px] md:max-w-[220px] h-auto object-contain drop-shadow-[0_2px_12px_rgba(255,215,0,0.12)]"

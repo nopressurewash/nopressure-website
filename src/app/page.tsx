@@ -43,10 +43,13 @@ export default function HomePage() {
         {/* Clean stacked hero content */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <Image
-            src="/logos/logo-wordmark.png"
-            alt="No Pressure wordmark logo"
+            src="/logos/wordmark-metallic.png"
+            alt="No Pressure Exterior Specialists"
+            width={672}
+            height={120}
             priority
-            className="w-full max-w-[520px] md:max-w-[560px] sm:max-w-[400px] h-auto object-contain mb-6"
+            className="w-full max-w-[640px] md:max-w-[672px] sm:max-w-[480px] h-auto object-contain mb-6"
+            style={{ width: '100%', height: 'auto' }}
           />
           <div className="text-sm md:text-base text-np-muted font-medium mb-3 mt-1">Gold Coast &amp; surrounding suburbs</div>
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-5">

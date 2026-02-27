@@ -16,12 +16,28 @@ export default function SiteHeader() {
       <div className="mx-auto max-w-6xl px-6 lg:px-10 py-4 flex items-center justify-between gap-6 min-h-[72px]">
         {/* Logo: wordmark on desktop, icon on mobile */}
         <Link href="/" className="flex items-center" aria-label="No Pressure Home">
-          <span className="block md:hidden">
-            <Image src="/logos/logo-icon.png" alt="No Pressure Logo" width={32} height={32} priority />
-          </span>
-          <span className="hidden md:block">
-            <Image src="/logos/logo-wordmark.png" alt="No Pressure Wordmark" width={140} height={32} priority />
-          </span>
+            <span className="block md:hidden">
+              <Image
+                src="/logos/logo-metallic.png"
+                alt="No Pressure Exterior Specialists"
+                width={40}
+                height={40}
+                style={{ width: 40, height: 40 }}
+                className="object-contain"
+                priority
+              />
+            </span>
+            <span className="hidden md:block">
+              <Image
+                src="/logos/wordmark-metallic.png"
+                alt="No Pressure Exterior Specialists"
+                width={160}
+                height={36}
+                style={{ width: 160, height: 36 }}
+                className="object-contain"
+                priority
+              />
+            </span>
         </Link>
 
         {/* Navigation */}
