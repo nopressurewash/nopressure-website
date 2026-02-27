@@ -1,40 +1,52 @@
-import Link from "next/link";
-import BrandMark from "./BrandMark";
 
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
-  <Link
-    href={href}
-    className="text-white/80 hover:text-white transition text-sm tracking-wide"
-  >
-    {children}
-  </Link>
-);
+import Link from "next/link";
+import Image from "next/image";
+import Button from "./Button";
+import clsx from "clsx";
+
+const NAV_LINKS = [
+  { href: "/services", label: "Services" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[var(--np-black)]/80 backdrop-blur">
-      <div className="mx-auto max-w-6xl px-5 py-4 flex items-center justify-between">
-        <BrandMark />
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-np-black/90 backdrop-blur">
+      <div className="mx-auto max-w-6xl px-5 py-3 flex items-center justify-between gap-4">
+        {/* Logo: wordmark on desktop, icon on mobile */}
+        <Link href="/" className="flex items-center" aria-label="No Pressure Home">
+          <span className="block md:hidden">
+            <Image src="/logos/logo-icon.png" alt="No Pressure Logo" width={40} height={40} priority />
+          </span>
+          <span className="hidden md:block">
+            <Image src="/logos/logo-wordmark.png" alt="No Pressure Wordmark" width={170} height={40} priority />
+          </span>
+        </Link>
 
+        {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/gallery">Gallery</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-white/80 hover:text-np-gold transition-colors text-base font-medium px-2 py-1 rounded"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <a
-            href="tel:0411076785"
-            className="hidden sm:inline-flex rounded-full border border-white/15 px-4 py-2 text-sm text-white/90 hover:text-white hover:border-white/30 transition"
-          >
-            Call 0411 076 785
-          </a>
-          <Link
+        {/* CTA Button */}
+        <div className="flex items-center gap-2">
+          <Button
             href="/contact"
-            className="inline-flex rounded-full bg-np-gold px-4 py-2 text-sm font-semibold text-black hover:brightness-110 transition"
+            variant="gold"
+            size="md"
+            className="hidden md:inline-flex shadow-none"
           >
             Get a Free Quote
-          </Link>
+          </Button>
         </div>
       </div>
     </header>

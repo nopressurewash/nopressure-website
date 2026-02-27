@@ -14,8 +14,7 @@ export default function SiteFooter() {
               EXTERIOR SPECIALISTS
             </div>
             <p className="text-sm text-white/70 mt-4 max-w-sm">
-              Premium driveway & footpath cleaning with safe exterior soft washing.
-              No roofs — ground-level exterior cleaning done properly.
+              Premium driveway, footpath and exterior cleaning. Gold Coast, Australia.
             </p>
           </div>
 
