@@ -42,10 +42,10 @@ export default function HomePage() {
           <Image
             src="/logos/logo-wordmark.png"
             alt="No Pressure Exterior Specialists"
-            width={672}
-            height={120}
+            width={840}
+            height={150}
             priority
-            className="w-full max-w-[640px] md:max-w-[672px] sm:max-w-[480px] h-auto object-contain mb-6"
+            className="w-full max-w-[500px] sm:max-w-[520px] md:max-w-[750px] lg:max-w-[840px] h-auto object-contain mb-6"
             style={{ width: '100%', height: 'auto' }}
           />
           <div className="text-sm md:text-base text-np-muted font-medium mb-3 mt-1">Gold Coast &amp; surrounding suburbs</div>
