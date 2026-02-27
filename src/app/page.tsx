@@ -36,10 +36,7 @@ export default function HomePage() {
     <>
       {/* HERO SECTION */}
       <Section size="large" className="relative overflow-hidden bg-np-black flex items-center min-h-[60vh] md:min-h-[70vh]" containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-        {/* Glow background layer */}
-        <div className="absolute inset-0 pointer-events-none select-none z-0">
-          <span className="block w-full h-full bg-gradient-to-br from-np-gold/60 via-np-purple/40 to-np-gold/30 rounded-full blur-2xl opacity-60 animate-pulse" />
-        </div>
+        {/* Removed gradient background for true np-black */}
         {/* Clean stacked hero content */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <Image

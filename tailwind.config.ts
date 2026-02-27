@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "np-black": "var(--np-black)",
+        "np-black": "#000000",
         "np-gold": "var(--np-gold)",
         "np-purple": "var(--np-purple)",
         "np-muted": "var(--np-muted)"
