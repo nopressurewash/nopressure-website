@@ -1,17 +1,87 @@
 
-import Link from "next/link";
-import Image from "next/image";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
 import SectionHeading from "@/components/SectionHeading";
 
 const WHY_CARDS = [
-  { title: "Fully Insured", desc: "Professional service and peace of mind." },
-  { title: "Professional Equipment", desc: "Premium tools for premium results." },
-  { title: "Premium Results", desc: "A finish that stands out instantly." },
-  { title: "Attention to Detail", desc: "Every job, every time." },
-  { title: "Reliable & On Time", desc: "Clear communication and punctuality." },
+  {
+    title: "Surface-Safe Approach",
+    desc: "Right pressure, right products — protecting paint, pavers, and concrete.",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+        <path
+          d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8.5 12.2l2.2 2.2 4.8-4.8"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Premium Results",
+    desc: "A finish that stands out instantly.",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+        <path
+          d="M12 3l2.2 6.1 6.5.2-5.1 3.8 1.9 6.2L12 16.7 6.5 19.3 8.4 13 3.3 9.3l6.5-.2L12 3z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Attention to Detail",
+    desc: "Every job, every time.",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+        <path
+          d="M10.5 4.5h3l1.2 2.4 2.6.4-.8 2.6 1.8 2-1.8 2 .8 2.6-2.6.4-1.2 2.4h-3l-1.2-2.4-2.6-.4.8-2.6-1.8-2 1.8-2-.8-2.6 2.6-.4 1.2-2.4z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9.4 12.2l1.6 1.6 3.6-3.6"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Reliable & On Time",
+    desc: "Clear communication and punctuality.",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+        <path
+          d="M12 7v5l3 2"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12 22a10 10 0 1 0-10-10 10 10 0 0 0 10 10z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
 ];
 
 const SERVICES = [
@@ -77,11 +147,17 @@ export default function HomePage() {
       <Section size="medium" className="bg-np-black border-t border-b border-white/10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide text-center mb-10">Why Choose Us</h2>
-          <div className="grid gap-8 md:grid-cols-5">
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {WHY_CARDS.map((card) => (
-              <Card key={card.title} goldBorder className="p-8 min-h-[170px] flex flex-col items-center justify-center text-center bg-gradient-to-b from-white/5 to-np-black/80">
-                <div className="text-np-gold font-bold text-lg mb-2 tracking-wide">{card.title}</div>
-                <div className="text-white/80 text-sm font-medium">{card.desc}</div>
+              <Card
+                key={card.title}
+                className="group relative overflow-hidden h-full p-8 min-h-[220px] flex flex-col items-center text-center bg-gradient-to-b from-white/7 via-white/4 to-np-black/85 border-white/10 rounded-3xl shadow-[0_18px_55px_rgba(0,0,0,0.55)] transition-all duration-300 hover:shadow-[0_22px_75px_rgba(0,0,0,0.65)] hover:ring-1 hover:ring-np-gold/45 after:content-[''] after:absolute after:left-6 after:right-6 after:top-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-np-purple/55 after:to-transparent after:opacity-0 after:transition-opacity after:duration-300 hover:after:opacity-100"
+              >
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-np-gold">
+                  {card.icon}
+                </div>
+                <div className="text-np-gold font-semibold text-lg mb-2 tracking-wide">{card.title}</div>
+                <div className="text-white/75 text-sm font-medium leading-relaxed">{card.desc}</div>
               </Card>
             ))}
           </div>
