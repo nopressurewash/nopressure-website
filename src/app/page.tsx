@@ -108,8 +108,15 @@ export default function HomePage() {
       <Section
         size="large"
         className="relative overflow-hidden bg-np-black pt-8 md:pt-12 pb-24 md:pb-28 min-h-[70vh]"
-        containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+        containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative"
       >
+        <img
+          src="/images/hero-image.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/25" />
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <img
             src="/brand/hero-wordmark.svg"
