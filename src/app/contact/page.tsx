@@ -120,7 +120,7 @@ export default function ContactPage() {
               </a>
 
               <p className="text-center text-xs text-white/45 tracking-wide">
-                Fast replies • Fully insured • Gold Coast local
+                Fast response • No obligation • Gold Coast local
               </p>
             </div>
           </div>
