@@ -187,7 +187,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8">
-            Driveways • Footpaths • Exterior Walls • Soft Washing • Concrete Surfaces
+            Driveways • Footpaths • Exterior Cleaning • Soft Washing
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
