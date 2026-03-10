@@ -105,29 +105,41 @@ export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-      <Section
-        size="large"
-        className="relative overflow-hidden bg-np-black pt-8 md:pt-12 pb-24 md:pb-28 min-h-[70vh]"
-        containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative"
-      >
+      <section className="relative flex items-center justify-center overflow-hidden bg-np-black min-h-[90vh] py-20 md:py-28">
+        {/* Full-width background image */}
         <img
           src="/images/hero-image.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
+
+        {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/25" />
-        <div className="relative z-10 flex flex-col items-center text-center w-full">
+
+        {/* Subtle mist / spray atmosphere */}
+        <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden="true">
+          <div
+            className="hero-mist-left absolute -left-1/4 top-1/4 h-2/3 w-3/4 rounded-full"
+            style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%)" }}
+          />
+          <div
+            className="hero-mist-right absolute -right-1/4 top-1/3 h-1/2 w-3/4 rounded-full"
+            style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, transparent 70%)" }}
+          />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           <img
             src="/brand/hero-wordmark.svg"
             alt="No Pressure Exterior Specialists"
-            style={{ height: "700px", width: "auto", maxWidth: "95vw", display: "block" }}
-            className="mx-auto object-contain mb-8 md:mb-10 select-none"
+            className="mx-auto h-[100px] sm:h-[140px] md:h-[200px] lg:h-[240px] w-auto max-w-[85vw] object-contain mb-6 md:mb-8 select-none"
             draggable="false"
             loading="eager"
           />
 
-          <div className="text-sm md:text-base text-np-muted font-medium mb-2">
+          <div className="text-sm md:text-base text-np-muted font-medium mb-3">
             Gold Coast &amp; surrounding suburbs
           </div>
 
@@ -135,7 +147,7 @@ export default function HomePage() {
             Professional High Pressure Cleaning
           </h1>
 
-          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-6">
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8">
             Driveways • Footpaths • Exterior Walls • Soft Washing • Concrete Surfaces
           </p>
 
@@ -148,7 +160,7 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* WHY CHOOSE US SECTION */}
       <Section size="medium" className="bg-np-black border-t border-b border-white/10">
