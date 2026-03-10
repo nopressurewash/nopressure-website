@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 
@@ -20,6 +21,8 @@ const services = [
 ];
 
 export default function ContactPage() {
+  const searchParams = useSearchParams();
+
   const [form, setForm] = useState<FormState>({
     name: "",
     phone: "",
@@ -27,6 +30,13 @@ export default function ContactPage() {
     service: services[0],
     message: "",
   });
+
+  useEffect(() => {
+    const serviceParam = searchParams.get("service");
+    if (serviceParam && services.includes(serviceParam)) {
+      setForm((prev) => ({ ...prev, service: serviceParam }));
+    }
+  }, [searchParams]);
 
   const mailtoHref = useMemo(() => {
     const subject = encodeURIComponent("No Pressure — Quote Request");

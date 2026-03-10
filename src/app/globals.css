@@ -70,3 +70,10 @@ body{
   .hero-shimmer,
   .hero-atmos { animation: none; opacity: 0.15; }
 }
+
+/* ── Chat widget ── */
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
