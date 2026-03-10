@@ -132,9 +132,9 @@ export default function HomePage() {
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           <img
-            src="/brand/hero-wordmark.svg"
+            src="/brand/hero-wordmark.png"
             alt="No Pressure Exterior Specialists"
-            className="mx-auto h-[100px] sm:h-[140px] md:h-[200px] lg:h-[240px] w-auto max-w-[85vw] object-contain mb-6 md:mb-8 select-none"
+            className="mx-auto w-[300px] sm:w-[480px] md:w-[560px] lg:w-[640px] h-auto max-w-[90vw] object-contain mb-6 md:mb-8 select-none"
             draggable="false"
             loading="eager"
           />
