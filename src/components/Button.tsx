@@ -29,7 +29,7 @@ export default function Button({
   };
   const variants = {
     gold:
-      "bg-np-gold text-black shadow-soft hover:brightness-105 hover:shadow-lg transition-all duration-150",
+      "bg-np-gold text-black shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:brightness-110 hover:shadow-[0_6px_30px_rgba(212,175,55,0.4)] transition-all duration-200",
     outline:
       "border border-np-gold text-np-gold bg-transparent hover:bg-np-gold/10 transition-all duration-150",
     flat: "bg-transparent text-np-gold hover:text-white transition-all duration-150",

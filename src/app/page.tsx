@@ -82,6 +82,20 @@ const WHY_CARDS = [
       </svg>
     ),
   },
+  {
+    title: "Fully Insured",
+    desc: "Public liability coverage for complete customer peace of mind.",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+        <path
+          d="M12 2l8 4v6c0 5.5-3.4 10-8 11.5C7.4 22 4 17.5 4 12V6l8-4z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
 ];
 
 const SERVICES = [
@@ -105,22 +119,62 @@ export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-      <Section
-        size="large"
-        className="relative overflow-hidden bg-np-black pt-8 md:pt-12 pb-24 md:pb-28 min-h-[70vh]"
-        containerClassName="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
-        <div className="relative z-10 flex flex-col items-center text-center w-full">
+      <section className="relative flex items-center justify-center overflow-hidden bg-np-black min-h-[90vh] py-20 md:py-28">
+        {/* Full-width background image */}
+        <img
+          src="/images/hero-image.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/25" />
+
+        {/* Cinematic mist / spray atmosphere */}
+        <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden="true">
+          {/* Ground fog — hugs the lower third like wet-surface haze */}
+          <div
+            className="hero-mist-ground absolute bottom-0 left-0 h-[40%] w-[130%]"
+            style={{ background: "linear-gradient(to top, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 40%, transparent 100%)" }}
+          />
+
+          {/* Spray drift — fans out from the left spray zone */}
+          <div
+            className="hero-mist-spray absolute left-[-5%] top-[15%] h-[55%] w-[50%] rounded-full"
+            style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.07) 0%, transparent 65%)" }}
+          />
+
+          {/* Upper ambient mist — slow high-altitude drift */}
+          <div
+            className="hero-mist-ambient absolute right-[-10%] top-[5%] h-[45%] w-[60%] rounded-full"
+            style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)" }}
+          />
+
+          {/* Fine spray shimmer — tiny highlight drift across the mid-section */}
+          <div
+            className="hero-shimmer absolute left-[10%] top-[30%] h-[30%] w-[80%]"
+            style={{ background: "radial-gradient(ellipse at 40% 50%, rgba(255,255,255,0.05) 0%, transparent 50%), radial-gradient(ellipse at 70% 40%, rgba(255,255,255,0.04) 0%, transparent 45%)" }}
+          />
+
+          {/* Atmospheric colour — faint gold/purple tint that breathes */}
+          <div
+            className="hero-atmos absolute inset-0 opacity-[0.03]"
+            style={{ background: "radial-gradient(ellipse at 30% 70%, rgba(212,175,55,0.12) 0%, transparent 50%), radial-gradient(ellipse at 75% 30%, rgba(111,43,255,0.08) 0%, transparent 50%)" }}
+          />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           <img
-            src="/logos/logo-wordmark.png"
+            src="/brand/hero-wordmark.png"
             alt="No Pressure Exterior Specialists"
-            style={{ height: "700px", width: "auto", maxWidth: "95vw", display: "block" }}
-            className="mx-auto object-contain mb-8 md:mb-10 select-none"
+            className="mx-auto w-[300px] sm:w-[480px] md:w-[560px] lg:w-[640px] h-auto max-w-[90vw] object-contain mb-6 md:mb-8 select-none"
             draggable="false"
             loading="eager"
           />
 
-          <div className="text-sm md:text-base text-np-muted font-medium mb-2">
+          <div className="text-sm md:text-base text-np-muted font-medium mb-3">
             Gold Coast &amp; surrounding suburbs
           </div>
 
@@ -128,7 +182,7 @@ export default function HomePage() {
             Professional High Pressure Cleaning
           </h1>
 
-          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-6">
+          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8">
             Driveways • Footpaths • Exterior Walls • Soft Washing • Concrete Surfaces
           </p>
 
@@ -141,13 +195,13 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* WHY CHOOSE US SECTION */}
+      {/* WHY CHOOSE NO PRESSURE SECTION */}
       <Section size="medium" className="bg-np-black border-t border-b border-white/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide text-center mb-10">Why Choose Us</h2>
-          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide text-center mb-10">Why Choose No Pressure</h2>
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
             {WHY_CARDS.map((card) => (
               <Card
                 key={card.title}

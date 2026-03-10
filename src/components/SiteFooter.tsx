@@ -9,7 +9,7 @@ export default function SiteFooter() {
         <div className="py-10 grid gap-8 md:grid-cols-3">
           <div className="flex flex-col items-start">
             <img
-              src="/logos/NP_Metalic_Logo.svg"
+              src="/brand/navbar-logo.svg"
               alt="No Pressure Exterior Specialists"
               style={{ height: '90px', width: 'auto', display: 'block', maxHeight: '90px' }}
               className="object-contain bg-transparent rounded-none select-none"
@@ -43,8 +43,9 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="py-5 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} No Pressure. All rights reserved.
+        <div className="py-5 text-center text-xs text-white/50 space-y-1">
+          <div>No Pressure Exterior Specialists — ABN: 24 588 610 393</div>
+          <div>© {new Date().getFullYear()} No Pressure. All rights reserved.</div>
         </div>
       </Container>
     </footer>
