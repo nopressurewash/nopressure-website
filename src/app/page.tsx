@@ -112,7 +112,7 @@ export default function HomePage() {
       >
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <img
-            src="/logos/logo-wordmark.png"
+            src="/brand/hero-wordmark.svg"
             alt="No Pressure Exterior Specialists"
             style={{ height: "700px", width: "auto", maxWidth: "95vw", display: "block" }}
             className="mx-auto object-contain mb-8 md:mb-10 select-none"

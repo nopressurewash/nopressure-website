@@ -9,7 +9,7 @@ export default function SiteFooter() {
         <div className="py-10 grid gap-8 md:grid-cols-3">
           <div className="flex flex-col items-start">
             <img
-              src="/logos/NP_Metalic_Logo.svg"
+              src="/brand/navbar-logo.svg"
               alt="No Pressure Exterior Specialists"
               style={{ height: '90px', width: 'auto', display: 'block', maxHeight: '90px' }}
               className="object-contain bg-transparent rounded-none select-none"

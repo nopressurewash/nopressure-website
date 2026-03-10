@@ -16,7 +16,7 @@ export default function SiteHeader() {
         {/* Logo: wordmark on desktop, icon on mobile */}
         <Link href="/" className="flex items-center" aria-label="No Pressure Home">
           <img
-            src="/logo/no-pressure-logo.svg"
+            src="/brand/navbar-logo.svg"
             alt="No Pressure Exterior Specialists"
             className="h-[30px] md:h-[40px] w-auto object-contain select-none"
             draggable="false"
