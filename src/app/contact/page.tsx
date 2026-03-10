@@ -142,6 +142,21 @@ export default function ContactPage() {
                 Gold Coast & surrounding suburbs.
               </div>
               <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-white/70">
+                <div className="text-white font-semibold tracking-wide mb-4">What Happens Next</div>
+                <ol className="space-y-3">
+                  {[
+                    "Send your request",
+                    "We review the details",
+                    "You receive your quote",
+                  ].map((step, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-np-gold/10 text-np-gold text-xs font-bold">
+                        {i + 1}
+                      </span>
+                      <span className="pt-0.5">{step}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </div>
           </div>
