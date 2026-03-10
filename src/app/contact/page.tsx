@@ -62,7 +62,7 @@ export default function ContactPage() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="rounded-xl bg-[var(--np-black)] border border-white/10 px-4 py-3 text-white outline-none focus:border-white/30"
-                  placeholder="Brandon"
+                  placeholder="Your name"
                 />
               </div>
 
