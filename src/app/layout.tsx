@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "No Pressure Exterior Specialists | Gold Coast",
   description: "Premium exterior cleaning across the Gold Coast. No Pressure Exterior Specialists deliver professional driveway cleaning, pressure washing, soft washing and exterior surface restoration with high-end equipment and attention to detail.",
   metadataBase: new URL("https://nopressure.au"),
+  other: { "theme-color": "#000000" },
   icons: {
     icon: [
       { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },

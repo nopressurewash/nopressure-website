@@ -182,8 +182,12 @@ export default function HomePage() {
             Professional High Pressure Cleaning
           </h1>
 
+          <p className="text-xs md:text-sm text-white/50 font-medium tracking-wider mb-5">
+            Fully insured • Professional equipment • Fast quotes
+          </p>
+
           <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8">
-            Driveways • Footpaths • Exterior Walls • Soft Washing • Concrete Surfaces
+            Driveways • Footpaths • Exterior Cleaning • Soft Washing
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
