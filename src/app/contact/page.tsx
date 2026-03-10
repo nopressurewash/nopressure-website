@@ -116,7 +116,7 @@ export default function ContactPage() {
                 href={mailtoHref}
                 className="mt-1 inline-flex items-center justify-center rounded-full bg-np-gold px-6 py-3.5 font-semibold text-black shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:brightness-110 hover:shadow-[0_6px_30px_rgba(212,175,55,0.4)] transition-all duration-200"
               >
-                Get My Free Quote
+                Get Your Free Quote
               </a>
 
               <p className="text-center text-xs text-white/45 tracking-wide">
