@@ -117,15 +117,36 @@ export default function HomePage() {
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/25" />
 
-        {/* Subtle mist / spray atmosphere */}
+        {/* Cinematic mist / spray atmosphere */}
         <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden="true">
+          {/* Ground fog — hugs the lower third like wet-surface haze */}
           <div
-            className="hero-mist-left absolute -left-1/4 top-1/4 h-2/3 w-3/4 rounded-full"
-            style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%)" }}
+            className="hero-mist-ground absolute bottom-0 left-0 h-[40%] w-[130%]"
+            style={{ background: "linear-gradient(to top, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 40%, transparent 100%)" }}
           />
+
+          {/* Spray drift — fans out from the left spray zone */}
           <div
-            className="hero-mist-right absolute -right-1/4 top-1/3 h-1/2 w-3/4 rounded-full"
-            style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, transparent 70%)" }}
+            className="hero-mist-spray absolute left-[-5%] top-[15%] h-[55%] w-[50%] rounded-full"
+            style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.07) 0%, transparent 65%)" }}
+          />
+
+          {/* Upper ambient mist — slow high-altitude drift */}
+          <div
+            className="hero-mist-ambient absolute right-[-10%] top-[5%] h-[45%] w-[60%] rounded-full"
+            style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)" }}
+          />
+
+          {/* Fine spray shimmer — tiny highlight drift across the mid-section */}
+          <div
+            className="hero-shimmer absolute left-[10%] top-[30%] h-[30%] w-[80%]"
+            style={{ background: "radial-gradient(ellipse at 40% 50%, rgba(255,255,255,0.05) 0%, transparent 50%), radial-gradient(ellipse at 70% 40%, rgba(255,255,255,0.04) 0%, transparent 45%)" }}
+          />
+
+          {/* Atmospheric colour — faint gold/purple tint that breathes */}
+          <div
+            className="hero-atmos absolute inset-0 opacity-[0.03]"
+            style={{ background: "radial-gradient(ellipse at 30% 70%, rgba(212,175,55,0.12) 0%, transparent 50%), radial-gradient(ellipse at 75% 30%, rgba(111,43,255,0.08) 0%, transparent 50%)" }}
           />
         </div>
 

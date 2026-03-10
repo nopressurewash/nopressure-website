@@ -21,24 +21,52 @@ body{
   background: rgba(111,43,255,0.35);
 }
 
-@keyframes mist-drift-left {
-  0%   { transform: translateX(0) scaleX(1); opacity: 0; }
-  15%  { opacity: 0.45; }
-  85%  { opacity: 0.35; }
-  100% { transform: translateX(-35%) scaleX(1.2); opacity: 0; }
+/* ── Hero mist / spray atmosphere ── */
+
+@keyframes mist-ground {
+  0%   { transform: translateX(0) scaleY(1);   opacity: 0; }
+  20%  { opacity: 0.55; }
+  80%  { opacity: 0.4; }
+  100% { transform: translateX(-18%) scaleY(1.1); opacity: 0; }
 }
 
-@keyframes mist-drift-right {
-  0%   { transform: translateX(0) scaleX(1); opacity: 0; }
-  15%  { opacity: 0.4; }
-  85%  { opacity: 0.3; }
-  100% { transform: translateX(30%) scaleX(1.15); opacity: 0; }
+@keyframes mist-spray {
+  0%   { transform: translate(0, 0) scale(1);     opacity: 0; }
+  15%  { opacity: 0.5; }
+  70%  { opacity: 0.3; }
+  100% { transform: translate(30%, -8%) scale(1.4); opacity: 0; }
 }
 
-.hero-mist-left {
-  animation: mist-drift-left 18s ease-in-out infinite;
+@keyframes mist-ambient {
+  0%   { transform: translateX(0);   opacity: 0; }
+  25%  { opacity: 0.3; }
+  75%  { opacity: 0.2; }
+  100% { transform: translateX(12%); opacity: 0; }
 }
 
-.hero-mist-right {
-  animation: mist-drift-right 22s ease-in-out infinite 4s;
+@keyframes shimmer-drift {
+  0%   { transform: translateX(0);     opacity: 0; }
+  10%  { opacity: 0.6; }
+  50%  { opacity: 0.35; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateX(-10%);  opacity: 0; }
+}
+
+@keyframes atmos-breathe {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+
+.hero-mist-ground  { animation: mist-ground  24s ease-in-out infinite; }
+.hero-mist-spray   { animation: mist-spray   16s ease-in-out infinite 2s; }
+.hero-mist-ambient { animation: mist-ambient 28s ease-in-out infinite 6s; }
+.hero-shimmer      { animation: shimmer-drift 20s ease-in-out infinite 3s; }
+.hero-atmos        { animation: atmos-breathe 12s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mist-ground,
+  .hero-mist-spray,
+  .hero-mist-ambient,
+  .hero-shimmer,
+  .hero-atmos { animation: none; opacity: 0.15; }
 }
