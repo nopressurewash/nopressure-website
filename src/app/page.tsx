@@ -82,6 +82,20 @@ const WHY_CARDS = [
       </svg>
     ),
   },
+  {
+    title: "Fully Insured",
+    desc: "Public liability coverage for complete customer peace of mind.",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+        <path
+          d="M12 2l8 4v6c0 5.5-3.4 10-8 11.5C7.4 22 4 17.5 4 12V6l8-4z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
 ];
 
 const SERVICES = [
@@ -187,7 +201,7 @@ export default function HomePage() {
       <Section size="medium" className="bg-np-black border-t border-b border-white/10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide text-center mb-10">Why Choose No Pressure</h2>
-          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
             {WHY_CARDS.map((card) => (
               <Card
                 key={card.title}
