@@ -15,16 +15,13 @@ export default function SiteHeader() {
       <div className="mx-auto max-w-6xl px-6 lg:px-10 py-4 flex items-center justify-between gap-6 min-h-[72px]">
         {/* Logo: wordmark on desktop, icon on mobile */}
         <Link href="/" className="flex items-center" aria-label="No Pressure Home">
-          <span className="block">
-            <img
-              src="/logos/NP_Metalic_Logo.svg"
-              alt="No Pressure Exterior Specialists"
-              style={{ height: '110px', width: 'auto', display: 'block' }}
-              className="object-contain bg-transparent rounded-none select-none"
-              draggable="false"
-              loading="eager"
-            />
-          </span>
+          <img
+            src="/logo/no-pressure-logo.svg"
+            alt="No Pressure Exterior Specialists"
+            className="h-[30px] md:h-[40px] w-auto object-contain select-none"
+            draggable="false"
+            loading="eager"
+          />
         </Link>
 
         {/* Navigation */}

@@ -5,8 +5,8 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "No Pressure | Exterior Specialists",
-  description: "Premium driveway, footpath & exterior cleaning. Gold Coast, Australia.",
+  title: "No Pressure Exterior Specialists | Gold Coast",
+  description: "Premium exterior cleaning across the Gold Coast. No Pressure Exterior Specialists deliver professional driveway cleaning, pressure washing, soft washing and exterior surface restoration with high-end equipment and attention to detail.",
   metadataBase: new URL("https://nopressure.au"),
   icons: {
     icon: [
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "No Pressure | Exterior Specialists",
-    description: "Premium driveway, footpath & exterior cleaning. Gold Coast, Australia.",
+    title: "No Pressure Exterior Specialists | Gold Coast",
+    description: "Premium exterior cleaning across the Gold Coast. No Pressure Exterior Specialists deliver professional driveway cleaning, pressure washing, soft washing and exterior surface restoration with high-end equipment and attention to detail.",
     type: "website",
     locale: "en_AU",
     url: "https://nopressure.au",
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "No Pressure | Exterior Specialists",
-    description: "Premium driveway, footpath & exterior cleaning. Gold Coast, Australia.",
+    title: "No Pressure Exterior Specialists | Gold Coast",
+    description: "Premium exterior cleaning across the Gold Coast. No Pressure Exterior Specialists deliver professional driveway cleaning, pressure washing, soft washing and exterior surface restoration with high-end equipment and attention to detail.",
   },
 };
 
