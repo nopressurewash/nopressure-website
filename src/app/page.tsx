@@ -183,6 +183,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* TRUST & CREDIBILITY SECTION */}
+      <Section size="medium" className="bg-np-black border-t border-white/10">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white tracking-wide mb-10">
+            Why Choose No Pressure
+          </h2>
+          <ul className="space-y-4 text-left max-w-md mx-auto">
+            {[
+              "Fully insured exterior cleaning service",
+              "Professional pressure washing equipment",
+              "Careful surface-safe cleaning methods",
+              "Reliable communication and fast quotes",
+              "Quality-focused results",
+            ].map((point) => (
+              <li key={point} className="flex items-start gap-3 text-white/85 text-base md:text-lg font-medium">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-np-gold" />
+                {point}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-10 text-sm text-np-muted tracking-wide">
+            Servicing the Gold Coast and surrounding suburbs.
+          </p>
+        </div>
+      </Section>
+
       {/* WHY CHOOSE US SECTION */}
       <Section size="medium" className="bg-np-black border-t border-b border-white/10">
         <div className="max-w-6xl mx-auto">

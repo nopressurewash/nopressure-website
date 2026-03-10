@@ -43,8 +43,9 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="py-5 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} No Pressure. All rights reserved.
+        <div className="py-5 text-center text-xs text-white/50 space-y-1">
+          <div>No Pressure Exterior Specialists — ABN: 24 588 610 393</div>
+          <div>© {new Date().getFullYear()} No Pressure. All rights reserved.</div>
         </div>
       </Container>
     </footer>
