@@ -49,7 +49,7 @@ export default function ContactPage() {
       <div className="py-14 md:py-18">
         <SectionHeading
           eyebrow="CONTACT"
-          title="Get a free quote"
+          title="Get a Free Quote"
           subtitle="Send through a few details and we’ll get back to you fast. For the quickest quote, include your suburb and what needs cleaning."
         />
 
@@ -116,11 +116,11 @@ export default function ContactPage() {
                 href={mailtoHref}
                 className="mt-1 inline-flex items-center justify-center rounded-full bg-np-gold px-6 py-3.5 font-semibold text-black shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:brightness-110 hover:shadow-[0_6px_30px_rgba(212,175,55,0.4)] transition-all duration-200"
               >
-                Get My Free Quote
+                Get a Free Quote
               </a>
 
               <p className="text-center text-xs text-white/45 tracking-wide">
-                Fast replies • Fully insured • Gold Coast local
+                Fast response • No obligation • Gold Coast local
               </p>
             </div>
           </div>
@@ -142,11 +142,21 @@ export default function ContactPage() {
                 Gold Coast & surrounding suburbs.
               </div>
               <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-white/70">
-                <div className="text-np-gold font-semibold">Note</div>
-                <div className="mt-2">
-                  We currently focus on driveways, footpaths and exterior surfaces.
-                  We do not offer roof cleaning at this time.
-                </div>
+                <div className="text-white font-semibold tracking-wide mb-4">What Happens Next</div>
+                <ol className="space-y-3">
+                  {[
+                    "Send your request",
+                    "We review the details",
+                    "You receive your quote",
+                  ].map((step, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-np-gold/10 text-np-gold text-xs font-bold">
+                        {i + 1}
+                      </span>
+                      <span className="pt-0.5">{step}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </div>
           </div>

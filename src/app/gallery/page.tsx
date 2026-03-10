@@ -19,11 +19,17 @@ const COMPARISONS = [
   },
 ];
 
-const Placeholder = ({ label }: { label: string }) => (
-  <div className="rounded-2xl border border-white/10 bg-white/5 aspect-[4/3] flex items-center justify-center text-xs text-white/55">
-    {label}
-  </div>
-);
+const PROJECTS = [
+  { service: "Driveway Pressure Clean", suburb: "Palm Beach" },
+  { service: "Footpath Restoration", suburb: "Burleigh Heads" },
+  { service: "Concrete Surface Cleaning", suburb: "Varsity Lakes" },
+  { service: "Exterior House Soft Wash", suburb: "Mermaid Beach" },
+  { service: "Driveway Pressure Clean", suburb: "Robina" },
+  { service: "Footpath Restoration", suburb: "Southport" },
+  { service: "Concrete Surface Cleaning", suburb: "Currumbin" },
+  { service: "Exterior House Soft Wash", suburb: "Broadbeach" },
+  { service: "Driveway Pressure Clean", suburb: "Miami" },
+];
 
 export default function GalleryPage() {
   return (
@@ -31,7 +37,7 @@ export default function GalleryPage() {
       <div className="py-14 md:py-18">
         <SectionHeading
           eyebrow="GALLERY"
-          title="Before & After Results"
+          title="Before & After Transformations"
           subtitle="See the difference professional pressure cleaning makes. Drag the slider to compare."
         />
 
@@ -55,11 +61,19 @@ export default function GalleryPage() {
         {/* Gallery grid */}
         <div className="mt-16">
           <h3 className="text-lg md:text-xl font-bold text-white tracking-wide mb-6">
-            Project Gallery
+            Recent Projects
           </h3>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {Array.from({ length: 9 }).map((_, i) => (
-              <Placeholder key={i} label={`Photo ${i + 1}`} />
+            {PROJECTS.map((project, i) => (
+              <div key={i}>
+                <div className="rounded-2xl border border-white/10 bg-white/5 aspect-[4/3] flex items-center justify-center text-xs text-white/55">
+                  Photo {i + 1}
+                </div>
+                <div className="mt-2 px-1">
+                  <p className="text-xs font-medium text-white/60 tracking-wide">{project.service}</p>
+                  <p className="text-[11px] text-white/35">{project.suburb}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
