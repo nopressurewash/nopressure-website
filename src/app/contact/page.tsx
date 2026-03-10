@@ -142,11 +142,6 @@ export default function ContactPage() {
                 Gold Coast & surrounding suburbs.
               </div>
               <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-white/70">
-                <div className="text-np-gold font-semibold">Note</div>
-                <div className="mt-2">
-                  We currently focus on driveways, footpaths and exterior surfaces.
-                  We do not offer roof cleaning at this time.
-                </div>
               </div>
             </div>
           </div>
