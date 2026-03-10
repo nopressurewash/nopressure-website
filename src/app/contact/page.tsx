@@ -72,7 +72,7 @@ export default function ContactPage() {
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   className="rounded-xl bg-[var(--np-black)] border border-white/10 px-4 py-3 text-white outline-none focus:border-white/30"
-                  placeholder="0411 076 785"
+                  placeholder="Your phone number"
                 />
               </div>
 
