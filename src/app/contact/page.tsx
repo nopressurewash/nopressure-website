@@ -49,7 +49,7 @@ export default function ContactPage() {
       <div className="py-14 md:py-18">
         <SectionHeading
           eyebrow="CONTACT"
-          title="Get a free quote"
+          title="Get a Free Quote"
           subtitle="Send through a few details and we’ll get back to you fast. For the quickest quote, include your suburb and what needs cleaning."
         />
 
@@ -116,7 +116,7 @@ export default function ContactPage() {
                 href={mailtoHref}
                 className="mt-1 inline-flex items-center justify-center rounded-full bg-np-gold px-6 py-3.5 font-semibold text-black shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:brightness-110 hover:shadow-[0_6px_30px_rgba(212,175,55,0.4)] transition-all duration-200"
               >
-                Get Your Free Quote
+                Get a Free Quote
               </a>
 
               <p className="text-center text-xs text-white/45 tracking-wide">
