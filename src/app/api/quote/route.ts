@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import twilio from "twilio";
 
 export async function POST(request: Request) {
   try {
@@ -45,6 +46,8 @@ export async function POST(request: Request) {
       `,
     });
 
+    await sendSmsNotification({ name, phone, suburb, service });
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Quote API error:", err);
@@ -52,6 +55,45 @@ export async function POST(request: Request) {
       { error: "Failed to send your request. Please try again." },
       { status: 500 },
     );
+  }
+}
+
+async function sendSmsNotification(lead: {
+  name: string;
+  phone: string;
+  suburb: string;
+  service: string;
+}) {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const from = process.env.TWILIO_FROM_NUMBER;
+  const to = process.env.TWILIO_TO_NUMBER;
+
+  if (!accountSid || !authToken || !from || !to) {
+    console.warn("Twilio env vars missing — SMS notification skipped");
+    return;
+  }
+
+  try {
+    const client = twilio(accountSid, authToken);
+
+    await client.messages.create({
+      from,
+      to,
+      body: [
+        "New No Pressure Quote",
+        "",
+        `Name: ${lead.name}`,
+        `Phone: ${lead.phone}`,
+        `Suburb: ${lead.suburb}`,
+        `Service: ${lead.service}`,
+        "",
+        `Tap to call:`,
+        `tel:${lead.phone}`,
+      ].join("\n"),
+    });
+  } catch (err) {
+    console.error("Twilio SMS error (email was sent successfully):", err);
   }
 }
 
