@@ -1,8 +1,9 @@
+"use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import Button from "./Button";
 import clsx from "clsx";
-import { useState } from "react";
 
 const NAV_LINKS = [
   { href: "/services", label: "Services" },
@@ -63,7 +64,7 @@ export default function SiteHeader() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center rounded-sm p2 text-white/80 hover:text-np-gold hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-np-gold focus-visible:ring-offset-2 focus-visible:ring-offset-np-black transition-colors"
+            className="md:hidden inline-flex items-center justify-center rounded-sm p-2 text-white/80 hover:text-np-gold hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-np-gold focus-visible:ring-offset-2 focus-visible:ring-offset-np-black transition-colors"
             aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
