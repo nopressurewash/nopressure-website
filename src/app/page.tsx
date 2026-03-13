@@ -191,7 +191,7 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button href="/contact" variant="gold" size="lg">
+            <Button href="/contact#quote" variant="gold" size="lg">
               Get a Free Quote
             </Button>
             <Button href="tel:0411076785" variant="outline" size="lg">
@@ -237,7 +237,7 @@ export default function HomePage() {
                   <div className="text-np-gold font-semibold text-lg mb-2 tracking-wide">{service.title}</div>
                   <div className="text-white/80 text-base">{service.desc}</div>
                 </div>
-                <Button href="/contact" variant="flat" size="md" className="mt-6">Get a Free Quote</Button>
+                <Button href="/contact#quote" variant="flat" size="md" className="mt-6">Get a Free Quote</Button>
               </Card>
             ))}
           </div>
