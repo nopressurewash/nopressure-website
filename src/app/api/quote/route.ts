@@ -1,25 +1,11 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const REQUIRED_FIELDS = ["name", "phone", "email", "suburb", "service", "message"] as const;
-
-type QuotePayload = Record<(typeof REQUIRED_FIELDS)[number], string>;
-
-function validate(body: unknown): body is QuotePayload {
-  if (!body || typeof body !== "object") return false;
-  const obj = body as Record<string, unknown>;
-  return REQUIRED_FIELDS.every(
-    (f) => typeof obj[f] === "string" && (obj[f] as string).trim().length > 0,
-  );
-}
-
 export async function POST(request: Request) {
   try {
     const body: unknown = await request.json();
 
-    if (!validate(body)) {
+    if (!isValidPayload(body)) {
       return NextResponse.json(
         { error: "All fields are required." },
         { status: 400 },
@@ -28,17 +14,21 @@ export async function POST(request: Request) {
 
     const { name, phone, email, suburb, service, message } = body;
 
+    const apiKey = process.env.RESEND_API_KEY;
     const toEmail = process.env.QUOTE_TO_EMAIL;
-    if (!toEmail) {
-      console.error("QUOTE_TO_EMAIL is not configured");
+
+    if (!apiKey || !toEmail) {
+      console.error("Missing env: RESEND_API_KEY or QUOTE_TO_EMAIL");
       return NextResponse.json(
-        { error: "Server configuration error." },
+        { error: "Email service not configured." },
         { status: 500 },
       );
     }
 
+    const resend = new Resend(apiKey);
+
     await resend.emails.send({
-      from: "No Pressure Website <onboarding@resend.dev>",
+      from: "No Pressure <quotes@nopressure.au>",
       to: toEmail,
       subject: "New Quote Request — No Pressure Exterior Specialists",
       replyTo: email,
@@ -63,6 +53,17 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
+}
+
+const REQUIRED_FIELDS = ["name", "phone", "email", "suburb", "service", "message"] as const;
+type QuotePayload = Record<(typeof REQUIRED_FIELDS)[number], string>;
+
+function isValidPayload(body: unknown): body is QuotePayload {
+  if (!body || typeof body !== "object") return false;
+  const obj = body as Record<string, unknown>;
+  return REQUIRED_FIELDS.every(
+    (f) => typeof obj[f] === "string" && (obj[f] as string).trim().length > 0,
+  );
 }
 
 function esc(str: string): string {
