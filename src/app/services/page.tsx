@@ -21,7 +21,7 @@ const ServiceBlock = ({
     {note ? <div className="mt-4 text-xs text-white/55">{note}</div> : null}
     <div className="mt-6">
       <Link
-        href="/contact"
+        href="/contact#quote"
         className="inline-flex rounded-full bg-np-gold px-5 py-2.5 text-sm font-semibold text-black hover:brightness-110 transition"
       >
         Get a Free Quote
@@ -82,7 +82,7 @@ export default function ServicesPage() {
 
             <div className="mt-7 flex flex-col sm:flex-row gap-3">
               <Link
-                href="/contact"
+                href="/contact#quote"
                 className="inline-flex items-center justify-center rounded-full bg-np-gold px-6 py-3 font-semibold text-black hover:brightness-110 transition"
               >
                 Get a Free Quote

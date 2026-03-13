@@ -53,7 +53,7 @@ export default function SiteHeader() {
         {/* CTA Button + Mobile toggle */}
         <div className="flex items-center gap-2">
           <Button
-            href="/contact"
+            href="/contact#quote"
             variant="gold"
             size="md"
             className="hidden md:inline-flex shadow-none"
@@ -101,7 +101,7 @@ export default function SiteHeader() {
           ))}
 
           <Button
-            href="/contact"
+            href="/contact#quote"
             variant="gold"
             size="lg"
             className="mt-2 w-full justify-center"
