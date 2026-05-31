@@ -36,8 +36,8 @@ export default function ServicesPage() {
       <div className="py-14 md:py-18">
         <SectionHeading
           eyebrow="SERVICES"
-          title="Premium exterior cleaning"
-          subtitle="Focused services that deliver a clean, high-end finish — with clear communication and professional equipment."
+          title="Gold Coast Pressure Cleaning Specialists"
+          subtitle="Professional pressure cleaning services for driveways, paths, patios and house washing across Oxenford and the Gold Coast. Reliable service, quality equipment and free quotes."
         />
 
         <div className="mt-10 grid gap-5 md:grid-cols-2">
