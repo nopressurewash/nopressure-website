@@ -88,10 +88,12 @@ export default function ServicesPage() {
                 Get a Free Quote
               </Link>
               <a
-                href="tel:0411076785"
+                href="https://m.me/61588346376881"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 font-semibold text-white/90 hover:text-white hover:border-white/30 transition"
               >
-                Call 0411 076 785
+                Message Us Now
               </a>
             </div>
           </div>

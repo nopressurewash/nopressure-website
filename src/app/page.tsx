@@ -194,8 +194,14 @@ export default function HomePage() {
             <Button href="/contact#quote" variant="gold" size="lg">
               Get a Free Quote
             </Button>
-            <Button href="tel:0411076785" variant="outline" size="lg">
-              Call 0411 076 785
+            <Button
+              href="https://m.me/61588346376881"
+              variant="outline"
+              size="lg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Message Us Now
             </Button>
           </div>
         </div>
