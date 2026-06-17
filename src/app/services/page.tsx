@@ -19,14 +19,6 @@ const ServiceBlock = ({
       ))}
     </ul>
     {note ? <div className="mt-4 text-xs text-white/55">{note}</div> : null}
-    <div className="mt-6">
-      <Link
-        href="/contact#quote"
-        className="inline-flex rounded-full bg-np-gold px-5 py-2.5 text-sm font-semibold text-black hover:brightness-110 transition"
-      >
-        Get a Free Quote
-      </Link>
-    </div>
   </div>
 );
 
