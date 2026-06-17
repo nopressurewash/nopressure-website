@@ -61,7 +61,7 @@ export default function ServicesPage() {
             ]}
             note="Note: We do not offer roof cleaning at this time."
           />
-          <div className="rounded-3xl border border-white/10 bg-[var(--np-black)] p-7 md:p-9">
+          <div className="rounded-3xl border border-np-gold/25 bg-[var(--np-black)] p-7 md:p-9 shadow-[0_4px_36px_rgba(212,175,55,0.08)]">
             <div className="text-white/60 text-sm tracking-widest">PROCESS</div>
             <div className="mt-2 text-2xl font-extrabold tracking-tight">
               Simple, fast, professional.
@@ -72,7 +72,11 @@ export default function ServicesPage() {
               <div>3. We clean — you get the premium finish</div>
             </div>
 
-            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+            <p className="mt-8 mb-4 text-sm font-medium text-np-gold/65">
+              Ready to get started?
+            </p>
+
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
               <Link
                 href="/contact#quote"
                 className="inline-flex items-center justify-center rounded-full bg-np-gold px-6 py-3 font-semibold text-black hover:brightness-110 transition"
