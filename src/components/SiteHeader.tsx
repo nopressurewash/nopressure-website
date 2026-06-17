@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Button from "./Button";
+import SocialLinks from "./SocialLinks";
 import clsx from "clsx";
 
 const NAV_LINKS = [
@@ -52,6 +53,7 @@ export default function SiteHeader() {
 
         {/* CTA Button + Mobile toggle */}
         <div className="flex items-center gap-2">
+          <SocialLinks className="hidden md:flex" size="sm" />
           <Button
             href="/contact#quote"
             variant="gold"
@@ -99,6 +101,12 @@ export default function SiteHeader() {
               {link.label}
             </Link>
           ))}
+
+          <SocialLinks
+            className="mt-3 justify-center gap-1"
+            size="md"
+            onLinkClick={handleLinkClick}
+          />
 
           <Button
             href="/contact#quote"
