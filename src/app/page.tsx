@@ -1,3 +1,8 @@
+import { pageMetadata } from "@/lib/business";
+import DrivewayOffer from "@/components/DrivewayOffer";
+import DrivewayPhotos from "@/components/DrivewayPhotos";
+
+export const metadata = pageMetadata("Driveway Cleaning Gold Coast | From $169 | No Pressure", "Gold Coast driveway pressure cleaning from $169. See real before and after work, get a free quote or call No Pressure on 0411 076 785.", "/");
 
 import Button from "@/components/Button";
 import Card from "@/components/Card";
@@ -6,8 +11,8 @@ import SectionHeading from "@/components/SectionHeading";
 
 const WHY_CARDS = [
   {
-    title: "Surface-Safe Approach",
-    desc: "Right pressure, right products — protecting paint, pavers, and concrete.",
+    title: "Care for Your Surfaces",
+    desc: "Pressure and products chosen to suit the surface and its condition.",
     icon: (
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
         <path
@@ -83,8 +88,8 @@ const WHY_CARDS = [
     ),
   },
   {
-    title: "Fully Insured",
-    desc: "Public liability coverage for complete customer peace of mind.",
+    title: "Gold Coast Local",
+    desc: "Local exterior cleaning with straightforward communication.",
     icon: (
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
         <path
@@ -101,7 +106,7 @@ const WHY_CARDS = [
 const SERVICES = [
   {
     title: "Driveway Pressure Cleaning",
-    desc: "Deep concrete cleaning that restores colour and contrast.",
+    desc: "Lift built-up dirt and grime from concrete driveways.",
   },
   {
     title: "Footpaths & Walkways",
@@ -109,7 +114,7 @@ const SERVICES = [
   },
   {
     title: "Exterior House Soft Wash",
-    desc: "Safe exterior washing for walls and surfaces.",
+    desc: "Low-pressure washing for suitable exterior walls and surfaces.",
   },
 ];
 
@@ -119,57 +124,26 @@ export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative flex items-center justify-center overflow-hidden bg-np-black min-h-[90vh] py-20 md:py-28">
+      <section className="relative flex items-center justify-center overflow-hidden bg-np-black py-10 md:py-16">
         {/* Full-width background image */}
         <img
-          src="/images/hero-image.jpg"
+          src="/images/hero-image-web.webp"
+          width="1280" height="853" fetchPriority="high"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
 
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/25" />
-
-        {/* Cinematic mist / spray atmosphere */}
-        <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden="true">
-          {/* Ground fog — hugs the lower third like wet-surface haze */}
-          <div
-            className="hero-mist-ground absolute bottom-0 left-0 h-[40%] w-[130%]"
-            style={{ background: "linear-gradient(to top, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 40%, transparent 100%)" }}
-          />
-
-          {/* Spray drift — fans out from the left spray zone */}
-          <div
-            className="hero-mist-spray absolute left-[-5%] top-[15%] h-[55%] w-[50%] rounded-full"
-            style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.07) 0%, transparent 65%)" }}
-          />
-
-          {/* Upper ambient mist — slow high-altitude drift */}
-          <div
-            className="hero-mist-ambient absolute right-[-10%] top-[5%] h-[45%] w-[60%] rounded-full"
-            style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 70%)" }}
-          />
-
-          {/* Fine spray shimmer — tiny highlight drift across the mid-section */}
-          <div
-            className="hero-shimmer absolute left-[10%] top-[30%] h-[30%] w-[80%]"
-            style={{ background: "radial-gradient(ellipse at 40% 50%, rgba(255,255,255,0.05) 0%, transparent 50%), radial-gradient(ellipse at 70% 40%, rgba(255,255,255,0.04) 0%, transparent 45%)" }}
-          />
-
-          {/* Atmospheric colour — faint gold/purple tint that breathes */}
-          <div
-            className="hero-atmos absolute inset-0 opacity-[0.03]"
-            style={{ background: "radial-gradient(ellipse at 30% 70%, rgba(212,175,55,0.12) 0%, transparent 50%), radial-gradient(ellipse at 75% 30%, rgba(111,43,255,0.08) 0%, transparent 50%)" }}
-          />
-        </div>
+        <div className="absolute inset-0 bg-black/60" />
 
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           <img
-            src="/brand/hero-wordmark.png"
+            src="/brand/hero-wordmark-web.png"
             alt="No Pressure Exterior Specialists"
-            className="mx-auto w-[300px] sm:w-[480px] md:w-[560px] lg:w-[640px] h-auto max-w-[90vw] object-contain mb-6 md:mb-8 select-none"
+            width="1400" height="229"
+            className="mx-auto mb-6 h-auto w-[280px] max-w-full select-none object-contain sm:w-[420px] md:w-[500px]"
             draggable="false"
             loading="eager"
           />
@@ -179,33 +153,36 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4">
-            Professional High Pressure Cleaning
+            Driveway Pressure Cleaning Gold Coast
           </h1>
 
-          <p className="text-xs md:text-sm text-white/50 font-medium tracking-wider mb-5">
-            Fully insured • Professional equipment • Fast quotes
+          <p className="text-base md:text-xl text-white/90 max-w-xl">
+            Make your home look a million bucks without spending a fortune.
           </p>
 
-          <p className="text-base md:text-xl text-white/80 font-medium max-w-xl mx-auto mb-8">
-            Driveways • Footpaths • Exterior Cleaning • Soft Washing
-          </p>
+          <DrivewayOffer />
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button href="/contact#quote" variant="gold" size="lg">
               Get a Free Quote
             </Button>
             <Button
-              href="https://m.me/61588346376881"
+              href="tel:0411076785"
               variant="outline"
               size="lg"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              Message Us Now
+              Call 0411 076 785
             </Button>
           </div>
+          <p className="mt-5 text-sm text-white/80">Also cleaning footpaths, patios and suitable house exteriors. <a href="/services" className="underline text-np-gold">See all services</a></p>
+          <a href="https://m.me/61588346376881" target="_blank" rel="noopener noreferrer" className="mt-2 min-h-11 inline-flex items-center text-sm text-white/80 underline">Prefer Messenger? Message us</a>
         </div>
       </section>
+
+      <Section size="medium" className="border-b border-white/10 bg-np-black">
+        <SectionHeading eyebrow="REAL WORK" title="A cleaner driveway. A better first impression." subtitle="Built-up grime can make a whole frontage look tired. Here’s a genuine No Pressure driveway clean." />
+        <div className="mt-8"><DrivewayPhotos /></div>
+      </Section>
 
       {/* WHY CHOOSE NO PRESSURE SECTION */}
       <Section size="medium" className="bg-np-black border-t border-b border-white/10">
@@ -256,10 +233,11 @@ export default function HomePage() {
           <div className="flex justify-center mb-8">
             <span className="inline-block w-24 h-1 rounded-full bg-gradient-to-r from-np-gold via-np-purple to-np-gold" />
           </div>
-          <h2 className="text-xl md:text-2xl font-bold text-np-gold mb-3 tracking-wide">Engineered for a Premium Finish.</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-np-gold mb-3 tracking-wide">Ready to freshen up your place?</h2>
           <p className="text-np-muted text-base md:text-lg font-medium">
-            Driveways and exteriors restored with precision, pressure, and care.
+            Tell us what needs cleaning and your suburb. We’ll discuss the job and give you a clear quote.
           </p>
+          <Button href="/contact#quote" size="lg" className="mt-6">Get a Free Quote</Button>
         </div>
       </Section>
     </>

@@ -22,7 +22,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center font-semibold rounded-full transition focus:outline-none focus:ring-2 focus:ring-np-gold";
+    "inline-flex min-h-11 items-center justify-center text-center font-semibold rounded-full transition focus:outline-none focus:ring-2 focus:ring-np-gold";
   const sizes = {
     md: "px-5 py-1.5 text-base",
     lg: "px-7 py-2.5 text-lg",
