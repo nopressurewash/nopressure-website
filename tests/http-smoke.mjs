@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import { once } from "node:events";
 import assert from "node:assert/strict";
+import sharp from "sharp";
 
 // Run after npm run build. This child deliberately has no mail credentials.
 const port = process.env.QUOTE_SMOKE_PORT || "3085";
@@ -24,7 +25,9 @@ try {
   const contact = await fetch(`${base}/contact`);
   assert.equal(contact.status, 200);
   const html = (await contact.text()).toLowerCase();
-  for (const id of ["qf-name", "qf-phone", "qf-email", "qf-suburb", "qf-service", "qf-message"]) assert.ok(html.includes(`id="${id}"`));
+  for (const id of ["qf-name", "qf-phone", "qf-email", "qf-suburb", "qf-service", "qf-message", "qf-photos"]) assert.ok(html.includes(`id="${id}"`));
+  assert.ok(html.includes('type="file"'));
+  assert.ok(html.includes("photos are not published"));
   assert.ok(html.includes('autocomplete="tel"'));
   assert.ok(html.includes('maxlength="4000"'));
   assert.equal((await fetch(`${base}/gallery`)).status, 200);
@@ -36,7 +39,7 @@ try {
   assert.ok(landingHtml.includes('id="quote"'));
   assert.ok(landingHtml.includes('href="#quote"'));
   assert.ok(!landingHtml.includes('href="/contact#quote"'));
-  for (const id of ["qf-name", "qf-phone", "qf-email", "qf-suburb", "qf-service", "qf-message"]) assert.ok(landingHtml.includes(`id="${id}"`));
+  for (const id of ["qf-name", "qf-phone", "qf-email", "qf-suburb", "qf-service", "qf-message", "qf-photos"]) assert.ok(landingHtml.includes(`id="${id}"`));
   for (const stage of ["before", "after"]) {
     assert.ok(landingHtml.includes(`/images/driveway-${stage}.jpg`));
     assert.equal((await fetch(`${base}/images/driveway-${stage}-480.webp`)).status, 200);
@@ -54,7 +57,16 @@ try {
   const limited = await post(body);
   assert.equal(limited.status, 429);
   assert.ok(Number(limited.headers.get("retry-after")) > 0);
-  console.log("HTTP checks passed: existing pages, driveway landing page/form/anchors/metadata/photos, and API 405/400/503/413/403/415/429 responses. No real mail credentials loaded.");
+  const form = new FormData();
+  for (const [key, value] of Object.entries(body)) form.append(key, value);
+  const jpeg = await sharp({ create: { width: 20, height: 20, channels: 3, background: "#777" } }).jpeg().toBuffer();
+  form.append("photos", new Blob([jpeg], { type: "image/jpeg" }), "test.jpg");
+  const photoResponse = await fetch(`${base}/api/quote`, { method: "POST", headers: { origin: base, "x-vercel-forwarded-for": "192.0.2.2" }, body: form });
+  assert.equal(photoResponse.status, 503);
+  assert.ok((await photoResponse.json()).error.includes("temporarily unavailable"));
+  form.set("photos", new Blob(["not an image"], { type: "image/jpeg" }), "fake.jpg");
+  assert.equal((await fetch(`${base}/api/quote`, { method: "POST", headers: { origin: base, "x-vercel-forwarded-for": "192.0.2.3" }, body: form })).status, 400);
+  console.log("HTTP checks passed: existing pages, driveway landing page/form/anchors/metadata/photos, optional upload controls, multipart validation, and API 405/400/503/413/403/415/429 responses. No real mail credentials loaded.");
 } finally {
   if (child.exitCode === null && child.signalCode === null) {
     const stopped = once(child, "exit");
