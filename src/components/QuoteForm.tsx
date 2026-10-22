@@ -1,29 +1,17 @@
 "use client";
 
-import { useState } from "react";
-
-type FormData = {
-  name: string;
-  phone: string;
-  email: string;
-  suburb: string;
-  service: string;
-  message: string;
-};
+import { useRef, useState } from "react";
+import { QUOTE_LIMITS, QUOTE_SERVICES, type QuoteFields } from "@/lib/quote-fields";
+import { requireQuoteAcceptance } from "@/lib/quote-response";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const SERVICES = [
-  "Driveway Pressure Cleaning",
-  "Footpaths & Walkways",
-  "Exterior House Soft Wash",
-  "Other",
-];
+const SERVICES = QUOTE_SERVICES;
 
 const INPUT_CLASS =
-  "rounded-xl bg-[var(--np-black)] border border-white/10 px-4 py-3 text-white placeholder:text-white/30 outline-none focus:border-np-gold/50 focus:ring-1 focus:ring-np-gold/20 transition-all duration-200";
+  "min-w-0 w-full rounded-xl bg-[var(--np-black)] border border-white/20 px-4 py-3 text-base text-white placeholder:text-white/50 outline-none focus:border-np-gold/50 focus:ring-1 focus:ring-np-gold/20 transition-all duration-200";
 
-const INITIAL: FormData = {
+const INITIAL: QuoteFields = {
   name: "",
   phone: "",
   email: "",
@@ -33,55 +21,76 @@ const INITIAL: FormData = {
 };
 
 export default function QuoteForm() {
-  const [form, setForm] = useState<FormData>(INITIAL);
+  const [form, setForm] = useState<QuoteFields>(INITIAL);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [website, setWebsite] = useState("");
+  const inFlight = useRef(false);
+  const submission = useRef<{ body: string; id: string } | null>(null);
+  const feedback = useRef<HTMLDivElement>(null);
 
-  const set = (field: keyof FormData) => (
+  const set = (field: keyof QuoteFields) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (inFlight.current) return;
+    inFlight.current = true;
     setStatus("submitting");
     setErrorMsg("");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 25_000);
 
     try {
+      const body = JSON.stringify(form);
+      // Keep the request identity after an error/timeout so a retry cannot send twice.
+      if (submission.current?.body !== body) submission.current = { body, id: crypto.randomUUID() };
       const res = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        signal: controller.signal,
+        body: JSON.stringify({ ...form, website, submissionId: submission.current!.id }),
       });
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => null);
-        throw new Error(data?.error || "Something went wrong.");
-      }
+      await requireQuoteAcceptance(res);
 
       setStatus("success");
       setForm(INITIAL);
+      submission.current = null;
     } catch (err) {
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setErrorMsg(
+        err instanceof Error && err.name === "AbortError"
+          ? "We could not confirm your request in time. Please retry or call 0411 076 785."
+          : err instanceof TypeError
+            ? "We could not connect. Please check your connection and retry, or call 0411 076 785."
+            : err instanceof Error ? err.message : "We could not confirm your request. Please retry or call 0411 076 785.",
+      );
+    } finally {
+      clearTimeout(timeout);
+      inFlight.current = false;
+      requestAnimationFrame(() => feedback.current?.focus());
     }
   }
 
   if (status === "success") {
     return (
-      <div className="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-9 flex flex-col items-center justify-center text-center min-h-[320px]">
+      <div ref={feedback} role="status" tabIndex={-1} className="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-9 flex flex-col items-center justify-center text-center min-h-[320px]">
         <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-np-gold/10">
           <svg viewBox="0 0 24 24" className="h-7 w-7 text-np-gold" fill="none" aria-hidden="true">
             <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <h3 className="text-xl font-bold text-white mb-2">Request Sent</h3>
+        <h3 className="text-xl font-bold text-white mb-2">Request submitted</h3>
         <p className="text-white/70 max-w-sm">
-          Thanks — your quote request has been sent. We&apos;ll be in touch shortly.
+          Thanks for the details. We&apos;ll get in touch to discuss the job and your quote.
         </p>
+        <p className="mt-3 text-sm text-white/70">Need to speak to us? <a href="tel:0411076785" className="text-np-gold underline">Call 0411 076 785</a>.</p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 text-sm text-np-gold hover:text-white transition-colors"
+          className="mt-6 min-h-11 text-sm text-np-gold hover:text-white transition-colors"
         >
           Send another request
         </button>
@@ -92,13 +101,19 @@ export default function QuoteForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-9"
+      aria-label="Free quote request"
+      aria-busy={status === "submitting"}
+      className="min-w-0 rounded-3xl border border-white/10 bg-white/5 p-7 md:p-9"
     >
-      <div className="grid gap-5">
+      <fieldset disabled={status === "submitting"} className="grid min-w-0 gap-5">
+        <legend className="sr-only">Your contact and cleaning details</legend>
         <div className="grid gap-1.5">
           <label htmlFor="qf-name" className="text-sm font-medium text-white/70 tracking-wide">Full Name</label>
           <input
             id="qf-name"
+            name="name"
+            autoComplete="name"
+            maxLength={QUOTE_LIMITS.name}
             required
             value={form.name}
             onChange={set("name")}
@@ -111,7 +126,12 @@ export default function QuoteForm() {
           <label htmlFor="qf-phone" className="text-sm font-medium text-white/70 tracking-wide">Phone Number</label>
           <input
             id="qf-phone"
+            name="phone"
             type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            minLength={8}
+            maxLength={QUOTE_LIMITS.phone}
             required
             value={form.phone}
             onChange={set("phone")}
@@ -124,7 +144,10 @@ export default function QuoteForm() {
           <label htmlFor="qf-email" className="text-sm font-medium text-white/70 tracking-wide">Email Address</label>
           <input
             id="qf-email"
+            name="email"
             type="email"
+            autoComplete="email"
+            maxLength={QUOTE_LIMITS.email}
             required
             value={form.email}
             onChange={set("email")}
@@ -137,6 +160,9 @@ export default function QuoteForm() {
           <label htmlFor="qf-suburb" className="text-sm font-medium text-white/70 tracking-wide">Suburb</label>
           <input
             id="qf-suburb"
+            name="suburb"
+            autoComplete="address-level2"
+            maxLength={QUOTE_LIMITS.suburb}
             required
             value={form.suburb}
             onChange={set("suburb")}
@@ -149,6 +175,7 @@ export default function QuoteForm() {
           <label htmlFor="qf-service" className="text-sm font-medium text-white/70 tracking-wide">Service Needed</label>
           <select
             id="qf-service"
+            name="service"
             required
             value={form.service}
             onChange={set("service")}
@@ -168,6 +195,8 @@ export default function QuoteForm() {
           <label htmlFor="qf-message" className="text-sm font-medium text-white/70 tracking-wide">Message / Job Details</label>
           <textarea
             id="qf-message"
+            name="message"
+            maxLength={QUOTE_LIMITS.message}
             required
             value={form.message}
             onChange={set("message")}
@@ -176,11 +205,10 @@ export default function QuoteForm() {
           />
         </div>
 
-        {status === "error" && (
-          <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-            {errorMsg || "Something went wrong. Please try again."}
-          </div>
-        )}
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="qf-website">Leave this field empty</label>
+          <input id="qf-website" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
+        </div>
 
         <button
           type="submit"
@@ -200,10 +228,16 @@ export default function QuoteForm() {
           )}
         </button>
 
-        <p className="text-center text-xs text-white/45 tracking-wide">
-          Fast response &bull; No obligation &bull; Gold Coast local
+        <p className="text-center text-xs leading-relaxed text-white/65">
+          No obligation. Your details are used to respond to your enquiry.
         </p>
-      </div>
+      </fieldset>
+      {status === "submitting" && <p role="status" className="mt-4 text-sm text-white/80">Submitting your request. Please keep this page open.</p>}
+      {status === "error" && (
+        <div ref={feedback} role="alert" tabIndex={-1} className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+          {errorMsg} <a href="tel:0411076785" className="underline">Call us</a> or <a href="mailto:hi@nopressure.au" className="underline">email us</a>.
+        </div>
+      )}
     </form>
   );
 }
