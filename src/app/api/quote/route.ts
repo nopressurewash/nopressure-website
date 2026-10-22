@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const REQUIRED_FIELDS = ["name", "phone", "email", "suburb", "service", "message"] as const;
 
 type QuotePayload = Record<(typeof REQUIRED_FIELDS)[number], string>;
@@ -29,15 +27,17 @@ export async function POST(request: Request) {
     const { name, phone, email, suburb, service, message } = body;
 
     const toEmail = process.env.QUOTE_TO_EMAIL;
-    if (!toEmail) {
-      console.error("QUOTE_TO_EMAIL is not configured");
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!toEmail || !apiKey) {
+      console.error("Quote email configuration is missing");
       return NextResponse.json(
         { error: "Server configuration error." },
         { status: 500 },
       );
     }
 
-    await resend.emails.send({
+    const resend = new Resend(apiKey);
+    const { data, error } = await resend.emails.send({
       from: "No Pressure Website <onboarding@resend.dev>",
       to: toEmail,
       subject: "New Quote Request — No Pressure Exterior Specialists",
@@ -55,9 +55,17 @@ export async function POST(request: Request) {
       `,
     });
 
+    if (error || !data?.id) {
+      console.error("Quote email provider rejected the request");
+      return NextResponse.json(
+        { error: "Your request could not be submitted. Please try again or call 0411 076 785." },
+        { status: 502 },
+      );
+    }
+
     return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error("Quote API error:", err);
+  } catch {
+    console.error("Quote API request failed");
     return NextResponse.json(
       { error: "Failed to send your request. Please try again." },
       { status: 500 },

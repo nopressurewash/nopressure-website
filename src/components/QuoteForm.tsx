@@ -76,7 +76,7 @@ export default function QuoteForm() {
         </div>
         <h3 className="text-xl font-bold text-white mb-2">Request Sent</h3>
         <p className="text-white/70 max-w-sm">
-          Thanks — your quote request has been sent. We'll be in touch shortly.
+          Thanks — your quote request has been sent. We&apos;ll be in touch shortly.
         </p>
         <button
           type="button"
