@@ -122,7 +122,7 @@ export default function HomePage() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative flex items-center justify-center overflow-hidden bg-np-black py-10 md:py-16">
+      <section className="relative flex items-center justify-center overflow-hidden bg-np-black py-12 sm:py-16 lg:py-20">
         {/* Full-width background image */}
         <img
           src="/images/hero-image-web.webp"
@@ -136,44 +136,42 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-black/60" />
 
         {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-5 text-center sm:px-6 lg:px-8">
           <img
             src="/brand/hero-wordmark-web.png"
             alt="No Pressure Exterior Specialists"
             width="1400" height="229"
-            className="mx-auto mb-6 h-auto w-[280px] max-w-full select-none object-contain sm:w-[420px] md:w-[500px]"
+            className="mx-auto mb-9 h-auto w-[250px] max-w-full select-none object-contain sm:mb-10 sm:w-[360px] lg:w-[420px]"
             draggable="false"
             loading="eager"
           />
 
-          <div className="text-sm md:text-base text-np-muted font-medium mb-3">
-            Gold Coast &amp; surrounding suburbs
-          </div>
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-np-gold">
+            Gold Coast &amp; surrounds
+          </p>
 
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight md:leading-[1.1] text-white mb-4">
-            Driveway Pressure Cleaning Gold Coast
+          <h1 className="text-[2rem] font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
+            Driveway cleaning.
           </h1>
 
-          <p className="text-base md:text-xl text-white/90 max-w-xl">
-            Make your home look a million bucks without spending a fortune.
+          <p className="mt-3 text-base text-white/80 sm:text-lg">
+            A fresh first impression.
           </p>
 
           <DrivewayOffer />
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button href="/contact#quote" variant="gold" size="lg">
+          <div className="flex w-full max-w-xs flex-col items-stretch justify-center gap-2 sm:max-w-none sm:flex-row sm:items-center sm:gap-6">
+            <Button href="/contact#quote" variant="gold" size="lg" className="min-h-12 px-7 text-base shadow-none">
               Get a Free Quote
             </Button>
-            <Button
+            <a
               href="tel:0411076785"
-              variant="outline"
-              size="lg"
+              className="inline-flex min-h-11 items-center justify-center text-base font-medium text-white/85 underline decoration-np-gold/60 underline-offset-4 transition-colors hover:text-np-gold"
             >
               Call 0411 076 785
-            </Button>
+            </a>
           </div>
-          <p className="mt-5 text-sm text-white/80">Also cleaning footpaths, patios and suitable house exteriors. <a href="/services" className="underline text-np-gold">See all services</a></p>
-          <a href="https://m.me/61588346376881" target="_blank" rel="noopener noreferrer" className="mt-2 min-h-11 inline-flex items-center text-sm text-white/80 underline">Prefer Messenger? Message us</a>
+          <a href="/services" className="mt-3 inline-flex min-h-11 items-center text-sm text-white/70 underline decoration-white/30 underline-offset-4 transition-colors hover:text-np-gold">Explore all services</a>
         </div>
       </section>
 
@@ -209,7 +207,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="OUR SERVICES"
             title="Premium exterior cleaning"
-            subtitle="Focused services that deliver a clean, high-end finish for your property."
+            subtitle="Make your home look a million bucks without spending a fortune."
           />
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {SERVICES.map((service) => (
@@ -236,6 +234,7 @@ export default function HomePage() {
             Tell us what needs cleaning and your suburb. We’ll discuss the job and give you a clear quote.
           </p>
           <Button href="/contact#quote" size="lg" className="mt-6">Get a Free Quote</Button>
+          <a href="https://m.me/61588346376881" target="_blank" rel="noopener noreferrer" className="mx-auto mt-3 flex min-h-11 w-fit items-center text-sm text-white/75 underline underline-offset-4 hover:text-np-gold">Prefer Messenger? Message us</a>
         </div>
       </Section>
     </>

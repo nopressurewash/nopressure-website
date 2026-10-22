@@ -11,6 +11,10 @@
 - Smaller existing wordmark and background derivatives reduce downloads. All original branding files remain.
 - Basic build stabilisation: repaired lockfile, runnable ESLint command, lazy Resend initialisation, and provider errors return failure instead of success. Existing quote fields and sender configuration retained for this stage.
 
+## Owner review refinement
+
+After the owner reviewed the first mobile preview, the hero was simplified: one short driveway-cleaning heading, one Gold Coast location line, an unboxed starting price, and one primary quote button with a quieter phone link. The longer business tagline and Messenger action remain further down the homepage. Gallery and image files are unchanged. This refinement still requires owner review before merge.
+
 ## Deliberately deferred
 
 Broader quote-form validation/spam/idempotency work, dedicated driveway landing page, metadata/schema/sitemap additions, contact-page changes and optional Google measurement are preserved in the earlier checkpoint commit `ba6d27d39db5421b0a9e1282e8b700db8c3a998a`. They are excluded from this stage’s final tree. That checkpoint compiled and its 12 quote-handler tests passed before the scope changed; these results do not claim that the stage-1 quote form has those deferred protections.
