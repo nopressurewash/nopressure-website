@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import SocialLinks from "./SocialLinks";
@@ -13,6 +14,8 @@ const NAV_LINKS = [
 ];
 
 export default function SiteHeader() {
+  const isDrivewayLandingPage = usePathname() === "/driveway-cleaning-gold-coast";
+  const quoteHref = isDrivewayLandingPage ? "#quote" : "/contact#quote";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -32,6 +35,7 @@ export default function SiteHeader() {
         {/* Logo: wordmark on desktop, icon on mobile */}
         <Link
           href="/"
+          prefetch={isDrivewayLandingPage ? false : undefined}
           className="flex items-center"
           aria-label="No Pressure Home"
           onClick={handleLinkClick}
@@ -63,9 +67,9 @@ export default function SiteHeader() {
         <div className="flex items-center gap-2">
           <SocialLinks className="hidden lg:flex" size="sm" />
           <a href="tel:0411076785" className="md:hidden inline-flex min-h-11 items-center rounded-full border border-np-gold/50 px-3 text-sm font-semibold text-np-gold" aria-label="Call 0411 076 785">Call</a>
-          <a href="/contact#quote" onClick={handleLinkClick} className="md:hidden inline-flex min-h-11 items-center rounded-full bg-np-gold px-3 text-sm font-semibold text-black">Free quote</a>
+          <a href={quoteHref} onClick={handleLinkClick} className="md:hidden inline-flex min-h-11 items-center rounded-full bg-np-gold px-3 text-sm font-semibold text-black">Free quote</a>
           <Button
-            href="/contact#quote"
+            href={quoteHref}
             variant="gold"
             size="md"
             className="hidden md:inline-flex shadow-none"
@@ -121,7 +125,7 @@ export default function SiteHeader() {
           />
 
           <Button
-            href="/contact#quote"
+            href={quoteHref}
             variant="gold"
             size="lg"
             className="mt-2 w-full justify-center"

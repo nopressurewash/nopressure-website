@@ -28,6 +28,20 @@ try {
   assert.ok(html.includes('autocomplete="tel"'));
   assert.ok(html.includes('maxlength="4000"'));
   assert.equal((await fetch(`${base}/gallery`)).status, 200);
+  const landing = await fetch(`${base}/driveway-cleaning-gold-coast?utm_source=google&utm_campaign=driveway-test`);
+  assert.equal(landing.status, 200);
+  const landingHtml = await landing.text();
+  assert.equal((landingHtml.match(/<h1(?:\s|>)/g) || []).length, 1);
+  assert.ok(landingHtml.includes('href="https://nopressure.au/driveway-cleaning-gold-coast"'));
+  assert.ok(landingHtml.includes('id="quote"'));
+  assert.ok(landingHtml.includes('href="#quote"'));
+  assert.ok(!landingHtml.includes('href="/contact#quote"'));
+  for (const id of ["qf-name", "qf-phone", "qf-email", "qf-suburb", "qf-service", "qf-message"]) assert.ok(landingHtml.includes(`id="${id}"`));
+  for (const stage of ["before", "after"]) {
+    assert.ok(landingHtml.includes(`/images/driveway-${stage}.jpg`));
+    assert.equal((await fetch(`${base}/images/driveway-${stage}-480.webp`)).status, 200);
+  }
+  assert.ok(html.includes('href="/contact#quote"'));
   assert.equal((await fetch(`${base}/api/quote`)).status, 405);
   assert.equal((await post("{", {}, true)).status, 400);
   const unavailable = await post(body);
@@ -40,7 +54,7 @@ try {
   const limited = await post(body);
   assert.equal(limited.status, 429);
   assert.ok(Number(limited.headers.get("retry-after")) > 0);
-  console.log("HTTP checks passed: page renders and API 405/400/503/413/403/415/429 responses. No real mail credentials loaded.");
+  console.log("HTTP checks passed: existing pages, driveway landing page/form/anchors/metadata/photos, and API 405/400/503/413/403/415/429 responses. No real mail credentials loaded.");
 } finally {
   if (child.exitCode === null && child.signalCode === null) {
     const stopped = once(child, "exit");

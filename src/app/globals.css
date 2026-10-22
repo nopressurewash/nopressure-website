@@ -10,7 +10,8 @@
   --np-muted:#CFCFCF;
 }
 
-html, body { height: 100%; }
+html { height: 100%; }
+body { min-height: 100%; }
 
 body{
   background: var(--np-black);
