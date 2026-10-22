@@ -1,6 +1,3 @@
-import { pageMetadata } from "@/lib/business";
-import DrivewayOffer from "@/components/DrivewayOffer";
-export const metadata = pageMetadata("Pressure Cleaning & House Soft Washing | Gold Coast", "Driveway, concrete, footpath and patio cleaning plus house soft washing across the Gold Coast. Driveway packages from $169. Free quotes from No Pressure.", "/services");
 import Link from "next/link";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
@@ -15,7 +12,7 @@ const ServiceBlock = ({
   note?: string;
 }) => (
   <div className="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-9">
-    <h2 className="text-np-gold font-semibold">{title}</h2>
+    <div className="text-np-gold font-semibold">{title}</div>
     <ul className="mt-4 space-y-2 text-sm text-white/75">
       {bullets.map((b) => (
         <li key={b}>• {b}</li>
@@ -30,22 +27,19 @@ export default function ServicesPage() {
     <Container>
       <div className="py-14 md:py-18">
         <SectionHeading
-          as="h1"
           eyebrow="SERVICES"
           title="Gold Coast Pressure Cleaning Specialists"
           subtitle="Professional pressure cleaning services for driveways, paths, patios and house washing across Oxenford and the Gold Coast. Reliable service, quality equipment and free quotes."
         />
 
-        <DrivewayOffer />
-        <Link href="/driveway-cleaning-gold-coast" className="inline-flex min-h-11 items-center text-np-gold underline">Driveway cleaning: see the results and request a quote</Link>
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
           <ServiceBlock
             title="Driveway Pressure Cleaning"
             bullets={[
               "Deep concrete cleaning",
               "Mould & grime removal",
               "Stain reduction where possible",
-              "Pressure and treatment suited to the surface",
+              "Fresh, even finish",
             ]}
           />
           <ServiceBlock
@@ -61,22 +55,21 @@ export default function ServicesPage() {
             title="Exterior House Soft Wash"
             bullets={[
               "Walls and exterior surfaces",
-              "Low-pressure washing for suitable surfaces",
+              "Safe soft washing approach",
               "Mould and built-up dirt reduction",
               "Gentle on paintwork where suitable",
             ]}
             note="Note: We do not offer roof cleaning at this time."
           />
-          <ServiceBlock title="Patios & Outdoor Areas" bullets={["Concrete patios and outdoor areas", "Surface dirt and grime removal", "Cleaning method suited to the material"]} note="Ask us about access, surface condition and any stains when requesting your quote." />
           <div className="rounded-3xl border border-np-gold/25 bg-[var(--np-black)] p-7 md:p-9 shadow-[0_4px_36px_rgba(212,175,55,0.08)]">
             <div className="text-white/60 text-sm tracking-widest">PROCESS</div>
             <div className="mt-2 text-2xl font-extrabold tracking-tight">
               Simple, fast, professional.
             </div>
             <div className="mt-4 space-y-3 text-sm text-white/75">
-              <div>1. Tell us your suburb and what needs cleaning</div>
-              <div>2. We discuss the details and confirm a quote</div>
-              <div>3. Agree on a time and we get to work</div>
+              <div>1. Send photos (or request an inspection)</div>
+              <div>2. Fast quote and booking confirmation</div>
+              <div>3. We clean — you get the premium finish</div>
             </div>
 
             <p className="mt-8 mb-4 text-sm font-medium text-np-gold/65">

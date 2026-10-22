@@ -1,4 +1,3 @@
-import PrivacySettings from "./PrivacySettings";
 import Link from "next/link";
 import Container from "./Container";
 
@@ -28,12 +27,9 @@ export default function SiteFooter() {
           <div className="text-sm">
             <div className="text-white/60 mb-3">Quick Links</div>
             <div className="flex flex-col gap-2">
-              <Link href="/driveway-cleaning-gold-coast" className="text-white/80 hover:text-white">Driveway Cleaning Gold Coast</Link>
               <Link href="/services" className="text-white/80 hover:text-white">Services</Link>
               <Link href="/gallery" className="text-white/80 hover:text-white">Gallery</Link>
               <Link href="/contact" className="text-white/80 hover:text-white">Contact / Quote</Link>
-              <Link href="/privacy" className="text-white/80 hover:text-white">Privacy</Link>
-              <PrivacySettings />
             </div>
           </div>
 

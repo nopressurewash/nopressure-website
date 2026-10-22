@@ -1,8 +1,6 @@
-import { pageMetadata } from "@/lib/business";
 import DrivewayOffer from "@/components/DrivewayOffer";
 import DrivewayPhotos from "@/components/DrivewayPhotos";
 
-export const metadata = pageMetadata("Driveway Cleaning Gold Coast | From $169 | No Pressure", "Gold Coast driveway pressure cleaning from $169. See real before and after work, get a free quote or call No Pressure on 0411 076 785.", "/");
 
 import Button from "@/components/Button";
 import Card from "@/components/Card";

@@ -13,7 +13,7 @@ export default function DrivewayPhotos({ showLink = true }: { showLink?: boolean
         </a>
       </figure>)}
     </div>
-    <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70">One of our driveway cleans, shown in the owner’s original photographs. The photos were taken from different positions. No colour enhancement or changes to the concrete. Tap either photo to view the original.</p>
+    <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70">Our original job photographs, taken from different positions. Tap either photo for a closer look.</p>
     {showLink && <Button href="/gallery" variant="flat" className="mt-3">View the job photos</Button>}
   </div>;
 }
