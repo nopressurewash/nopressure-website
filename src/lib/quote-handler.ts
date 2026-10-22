@@ -1,5 +1,7 @@
 import { createHash, randomBytes } from "node:crypto";
 import { QUOTE_LIMITS, QUOTE_SERVICES, type QuoteFields } from "./quote-fields.ts";
+import { MAX_QUOTE_UPLOAD_BYTES } from "./quote-photo-limits.ts";
+import { quoteAttachments, readQuotePhotos, QuotePhotoError, type QuoteAttachment } from "./quote-photos-server.ts";
 
 const MAX_BYTES = 16_384;
 const WINDOW_MS = 15 * 60_000;
@@ -11,7 +13,7 @@ const RETRY_MESSAGE = "We could not confirm your request. Please try again or ca
 export const DEFAULT_QUOTE_FROM = "No Pressure Website <onboarding@resend.dev>";
 
 type Payload = QuoteFields & { submissionId?: string };
-export type QuoteMail = { from: string; to: string; replyTo: string; subject: string; text: string; html: string };
+export type QuoteMail = { from: string; to: string; replyTo: string; subject: string; text: string; html: string; attachments?: QuoteAttachment[] };
 type ProviderResponse = { data: { id: string } | null; error: { name?: string; message?: string } | null };
 type Config = { apiKey?: string; to?: string; from?: string };
 type Dependencies = {
@@ -76,8 +78,9 @@ function json(body: object, status: number, extra: Record<string, string> = {}) 
   return Response.json(body, { status, headers: { "Cache-Control": "no-store", ...extra } });
 }
 
-async function readBody(request: Request): Promise<unknown> {
-  if (Number(request.headers.get("content-length")) > MAX_BYTES) throw new RangeError();
+async function readBody(request: Request, multipart: boolean): Promise<{ body: unknown; files: File[] }> {
+  const limit = multipart ? MAX_QUOTE_UPLOAD_BYTES : MAX_BYTES;
+  if (Number(request.headers.get("content-length")) > limit) throw new RangeError();
   const reader = request.body?.getReader();
   if (!reader) throw new SyntaxError();
   const chunks: Uint8Array[] = [];
@@ -87,11 +90,29 @@ async function readBody(request: Request): Promise<unknown> {
       const result = await reader.read();
       if (result.done) break;
       length += result.value.byteLength;
-      if (length > MAX_BYTES) { await reader.cancel(); throw new RangeError(); }
+      if (length > limit) { await reader.cancel(); throw new RangeError(); }
       chunks.push(result.value);
     }
   } finally { reader.releaseLock(); }
-  return JSON.parse(Buffer.concat(chunks).toString("utf8"));
+  const bytes = Buffer.concat(chunks);
+  if (!multipart) return { body: JSON.parse(bytes.toString("utf8")), files: [] };
+  // Parse only after the streamed byte cap, rather than buffering unbounded formData().
+  const form = await new Response(new Uint8Array(bytes), { headers: { "content-type": request.headers.get("content-type")! } }).formData();
+  const body: Record<string, string> = Object.create(null);
+  const files: File[] = [];
+  let textBytes = 0;
+  for (const [key, value] of form) {
+    if (typeof value !== "string") {
+      if (key !== "photos") throw new QuotePhotoError("Please use the photo field to attach JPG, PNG or WebP photos.");
+      if (value.size || value.name) files.push(value);
+    } else {
+      if (key === "photos" || Object.hasOwn(body, key)) throw new QuotePhotoError("The request could not be read. Please try again.");
+      textBytes += Buffer.byteLength(value, "utf8");
+      if (textBytes > MAX_BYTES) throw new RangeError();
+      body[key] = value;
+    }
+  }
+  return { body, files };
 }
 
 function hasAllowedOrigin(request: Request): boolean {
@@ -132,11 +153,18 @@ export function createQuoteHandler({ config, send, now = Date.now, report = () =
     if (attempts.size >= 2000 && !attempt) return json({ error: RETRY_MESSAGE }, 503, { "Retry-After": "60" });
     attempts.set(client, { count: (attempt?.count || 0) + 1, expires: attempt?.expires || time + WINDOW_MS });
 
-    if (!/^application\/json(?:;|$)/i.test(request.headers.get("content-type") || "")) return json({ error: "Please use the quote form to submit your request." }, 415);
-    let body: unknown;
-    try { body = await readBody(request); }
-    catch (error) { return json({ error: error instanceof RangeError ? "Your request is too long. Please shorten the job details." : "The request could not be read. Please try again." }, error instanceof RangeError ? 413 : 400); }
-    const validation = validateQuote(body);
+    const contentType = request.headers.get("content-type") || "";
+    const multipart = /^multipart\/form-data(?:;|$)/i.test(contentType);
+    if (!multipart && !/^application\/json(?:;|$)/i.test(contentType)) return json({ error: "Please use the quote form to submit your request." }, 415);
+    let input: Awaited<ReturnType<typeof readBody>>;
+    let photos: Awaited<ReturnType<typeof readQuotePhotos>>;
+    try {
+      input = await readBody(request, multipart);
+      photos = await readQuotePhotos(input.files);
+    } catch (error) {
+      return json({ error: error instanceof QuotePhotoError ? error.message : error instanceof RangeError ? (multipart ? "Your request is too large. Remove a photo or shorten the job details." : "Your request is too long. Please shorten the job details.") : "The request could not be read. Please try again." }, error instanceof RangeError ? 413 : 400);
+    }
+    const validation = validateQuote(input.body);
     if ("error" in validation) return json({ error: validation.error }, 400);
     const payload = validation.payload;
     const mailConfig = resolveMailConfig(config());
@@ -146,33 +174,47 @@ export function createQuoteHandler({ config, send, now = Date.now, report = () =
     }
 
     const fields = { name: payload.name, phone: payload.phone, email: payload.email, suburb: payload.suburb, service: payload.service, message: payload.message };
-    const fingerprint = createHash("sha256").update(JSON.stringify(fields)).digest("hex");
+    // Preserve keys for already-open text-only forms; changed photo bytes identify a new enquiry.
+    const fingerprint = createHash("sha256").update(JSON.stringify(fields));
+    for (const photo of photos) fingerprint.update(`:${photo.digest}`);
+    const digest = fingerprint.digest("hex");
     // Old already-open forms still work. New forms use a stable UUID for reliable retries.
     const identity = payload.submissionId || `legacy-${Math.floor(time / 300_000)}`;
-    const key = createHash("sha256").update(`${identity}:${fingerprint}`).digest("hex");
-    const existing = requests.get(fingerprints.get(fingerprint)?.key || key);
+    const key = createHash("sha256").update(`${identity}:${digest}`).digest("hex");
+    const existing = requests.get(fingerprints.get(digest)?.key || key);
     if (existing) return (await existing.result).clone();
     if (requests.size >= 1000) return json({ error: RETRY_MESSAGE }, 503, { "Retry-After": "60" });
 
     // Defer the send by a microtask so even a synchronously throwing dependency is cached first.
     const result = Promise.resolve().then(async () => {
       try {
-        const response = await send(mailFor(payload, mailConfig), `quote/${key}`);
+        const attachments = await quoteAttachments(photos);
+        const mail = mailFor(payload, mailConfig);
+        if (attachments.length) {
+          mail.attachments = attachments;
+          mail.text += `\n\nPhotos: ${attachments.length} attached for this quote enquiry. Resized copies; originals remain with the customer.`;
+          mail.html += `<p>Photos: ${attachments.length} attached for this quote enquiry. Resized copies; originals remain with the customer.</p>`;
+        }
+        const response = await send(mail, `quote/${key}`);
         if (response.error || typeof response.data?.id !== "string" || !response.data.id.trim()) {
           report("quote_provider_rejected");
-          requests.delete(key); fingerprints.delete(fingerprint);
+          requests.delete(key); fingerprints.delete(digest);
           return json({ error: RETRY_MESSAGE }, 502);
         }
         return json({ success: true, status: "accepted", requestId: response.data.id }, 202);
-      } catch {
+      } catch (error) {
+        if (error instanceof QuotePhotoError) {
+          requests.delete(key); fingerprints.delete(digest);
+          return json({ error: error.message }, 400);
+        }
         // An interrupted response is ambiguous; keep the same provider key when retrying.
         report("quote_provider_unavailable");
-        requests.delete(key); fingerprints.delete(fingerprint);
+        requests.delete(key); fingerprints.delete(digest);
         return json({ error: RETRY_MESSAGE }, 502);
       }
     });
     requests.set(key, { expires: time + WINDOW_MS, result });
-    fingerprints.set(fingerprint, { expires: time + DUPLICATE_WINDOW_MS, key });
+    fingerprints.set(digest, { expires: time + DUPLICATE_WINDOW_MS, key });
     return (await result).clone();
   };
 }

@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { QUOTE_LIMITS, QUOTE_SERVICES, type QuoteFields } from "@/lib/quote-fields";
 import { requireQuoteAcceptance } from "@/lib/quote-response";
+import QuotePhotos from "@/components/QuotePhotos";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -25,8 +26,10 @@ export default function QuoteForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [website, setWebsite] = useState("");
+  const [photos, setPhotos] = useState<File[]>([]);
+  const [preparingPhotos, setPreparingPhotos] = useState(false);
   const inFlight = useRef(false);
-  const submission = useRef<{ body: string; id: string } | null>(null);
+  const submission = useRef<{ body: string; photos: File[]; id: string } | null>(null);
   const feedback = useRef<HTMLDivElement>(null);
 
   const set = (field: keyof QuoteFields) => (
@@ -35,7 +38,7 @@ export default function QuoteForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (inFlight.current) return;
+    if (inFlight.current || preparingPhotos) return;
     inFlight.current = true;
     setStatus("submitting");
     setErrorMsg("");
@@ -45,18 +48,23 @@ export default function QuoteForm() {
     try {
       const body = JSON.stringify(form);
       // Keep the request identity after an error/timeout so a retry cannot send twice.
-      if (submission.current?.body !== body) submission.current = { body, id: crypto.randomUUID() };
+      if (submission.current?.body !== body || submission.current.photos !== photos) submission.current = { body, photos, id: crypto.randomUUID() };
+      const data = new FormData();
+      for (const [key, value] of Object.entries(form)) data.append(key, value);
+      data.append("website", website);
+      data.append("submissionId", submission.current!.id);
+      for (const [index, photo] of photos.entries()) data.append("photos", photo, `job-photo-${index + 1}.jpg`);
       const res = await fetch("/api/quote", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         signal: controller.signal,
-        body: JSON.stringify({ ...form, website, submissionId: submission.current!.id }),
+        body: data,
       });
 
       await requireQuoteAcceptance(res);
 
       setStatus("success");
       setForm(INITIAL);
+      setPhotos([]);
       submission.current = null;
     } catch (err) {
       setStatus("error");
@@ -205,6 +213,8 @@ export default function QuoteForm() {
           />
         </div>
 
+        <QuotePhotos photos={photos} onChange={setPhotos} onPreparing={setPreparingPhotos} />
+
         <div className="hidden" aria-hidden="true">
           <label htmlFor="qf-website">Leave this field empty</label>
           <input id="qf-website" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
@@ -212,7 +222,7 @@ export default function QuoteForm() {
 
         <button
           type="submit"
-          disabled={status === "submitting"}
+          disabled={status === "submitting" || preparingPhotos}
           className="mt-1 inline-flex items-center justify-center rounded-full bg-np-gold px-6 py-3.5 font-semibold text-black shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:brightness-110 hover:shadow-[0_6px_30px_rgba(212,175,55,0.4)] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {status === "submitting" ? (
@@ -224,12 +234,12 @@ export default function QuoteForm() {
               Sending…
             </>
           ) : (
-            "Get a Free Quote"
+            preparingPhotos ? "Preparing photos…" : "Get a Free Quote"
           )}
         </button>
 
         <p className="text-center text-xs leading-relaxed text-white/65">
-          No obligation. Your details are used to respond to your enquiry.
+          No obligation. Your details and optional photos are sent to No Pressure via Resend to respond to your enquiry. Photos are not published. Please avoid including people or sensitive documents.
         </p>
       </fieldset>
       {status === "submitting" && <p role="status" className="mt-4 text-sm text-white/80">Submitting your request. Please keep this page open.</p>}
